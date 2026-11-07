@@ -8,10 +8,11 @@ on:
 
 jobs:
   test:
-    name: Test on ${{ matrix.os }}
+    name: Test on ${{ matrix.os }} (Node ${{ matrix.node-version }})
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node-version: [22.x, 24.x]
@@ -23,10 +24,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # The SDK and the example are pnpm workspace packages (the example depends on
+      # "@vortideck/plugin-sdk": "workspace:*"), so npm cannot install them.
+      - uses: pnpm/action-setup@v4
+
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: pnpm
 
       - name: Cache the plugin toolchain
         uses: actions/cache@v4
@@ -34,23 +40,15 @@ jobs:
           path: .toolchain
           key: vortideck-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('packages/plugin-sdk/bin/fetch-toolchain.js') }}
 
-      - name: Install SDK dependencies
-        run: |
-          cd packages/plugin-sdk
-          npm install
-          npm run build
+      - name: Install SDK and example dependencies
+        run: pnpm install --frozen-lockfile --filter "@vortideck/plugin-sdk..." --filter "example-plugin-with-sdk..."
 
-      - name: Install example plugin dependencies
-        run: |
-          cd examples/plugin-with-sdk
-          npm install
+      - name: Build the SDK
+        run: pnpm --filter @vortideck/plugin-sdk run build
 
       - name: Build example plugin
-        run: |
-          cd examples/plugin-with-sdk
-          npm run build
+        run: pnpm --filter example-plugin-with-sdk run build
 
       - name: Verify WASM output
-        run: |
-          cd examples/plugin-with-sdk
-          ls -lh dist/*.wasm
+        shell: bash
+        run: ls -lh examples/plugin-with-sdk/dist/*.wasm

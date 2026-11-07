@@ -1,0 +1,59 @@
+name: Bug report
+description: Something in VortiDeck does not work as expected.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. For security problems, do not open an issue: follow SECURITY.md instead.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: VortiDeck version
+      description: Shown in Settings → About.
+      placeholder: "0.7.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Desktop app
+        - Phone companion app
+        - Deck and widgets
+        - Flows and automation
+        - OBS and streaming
+        - Overlays
+        - Plugins and marketplace
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: System
+      description: Windows version, and phone model and OS if the companion app is involved.
+      placeholder: "Windows 11 24H2, Pixel 8 Android 15"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Paste relevant log lines or attach screenshots. Remove any tokens or personal data first.
