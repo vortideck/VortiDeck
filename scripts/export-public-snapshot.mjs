@@ -3,10 +3,13 @@
 //
 //   node scripts/export-public-snapshot.mjs --out <empty dir> [--rev HEAD] [--author "Name <email>"] [--scan-only]
 //
-// Steps: export the revision with `git archive` (committed files only), remove every
-// path matched by scripts/public-export.exclude, scan the result for secrets and
-// personal data, then create a new git repository with a single commit.
+// Steps: export the revision (committed files only), remove every path matched by
+// scripts/public-export.exclude as committed in that revision, scan the result for
+// secrets and personal data, then create a new git repository with a single commit.
+// --scan-only stops after the scan and leaves the exported files in --out.
 // Exits non-zero, without creating the commit, when the scan finds a likely secret.
+//
+// To update the existing public repository instead, use scripts/sync-public.mjs.
 
 import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -45,7 +48,13 @@ const toRegex = (pattern) => {
   }
   return new RegExp(`^${body}${directory ? '(?:/.*)?' : ''}$`);
 };
-const patterns = fs.readFileSync(path.join(root, 'scripts/public-export.exclude'), 'utf8')
+// Read the list from the exported revision itself, so re-exporting an older revision
+// reproduces exactly what was published then (scripts/sync-public.mjs relies on this).
+const excludeAtRev = spawnSync('git', ['show', `${rev}:scripts/public-export.exclude`], { cwd: root, encoding: 'utf8' });
+const excludeText = excludeAtRev.status === 0
+  ? excludeAtRev.stdout
+  : fs.readFileSync(path.join(root, 'scripts/public-export.exclude'), 'utf8');
+const patterns = excludeText
   .split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith('#'))
   .map((line) => ({ line, regex: toRegex(line) }));
 

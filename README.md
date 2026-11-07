@@ -1,12 +1,41 @@
-# VortiDeck
+<p align="center">
+  <img src="docs/media/logo.png" alt="VortiDeck logo" width="112">
+</p>
 
-**A free, local-first control deck, visual automation engine and live-streaming studio for Windows, with a phone companion app.**
+<h1 align="center">VortiDeck</h1>
+
+<p align="center">
+  <strong>A free, local-first control deck, visual automation engine and live-streaming studio for Windows, with a phone companion app.</strong>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="License: GPL-3.0" src="https://img.shields.io/badge/license-GPL--3.0-blue"></a>
+  <a href="packages/plugin-sdk/README.md"><img alt="Plugin SDK: MIT" src="https://img.shields.io/badge/plugin%20SDK-MIT-green"></a>
+  <a href="https://github.com/vortideck/VortiDeck/actions/workflows/release-quality.yml"><img alt="Release Quality" src="https://github.com/vortideck/VortiDeck/actions/workflows/release-quality.yml/badge.svg"></a>
+  <img alt="Platforms: Windows and Android" src="https://img.shields.io/badge/platforms-Windows%20%7C%20Android-informational">
+  <a href="https://discord.gg/keuv7TYHht"><img alt="Discord" src="https://img.shields.io/badge/chat-Discord-5865F2?logo=discord&logoColor=white"></a>
+</p>
+
+<p align="center">
+  <a href="https://vortideck.com/download"><strong>Download</strong></a> ·
+  <a href="https://vortideck.com">Website</a> ·
+  <a href="https://vortideck.com/blog">Blog</a> ·
+  <a href="packages/plugin-sdk/README.md">Plugin SDK</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a> ·
+  <a href="SECURITY.md">Security</a>
+</p>
+
+<p align="center">
+  <img src="docs/media/hero.png" alt="The VortiDeck desktop app and phone companion" width="900">
+</p>
 
 Created and maintained by **Alexi Pawelec** ([@alexiokay](https://github.com/alexiokay)).
 
-[Website](https://vortideck.com) · [Blog](https://vortideck.com/blog) · [Plugin SDK](packages/plugin-sdk/README.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+## Download
 
----
+Get the Windows installer from **[vortideck.com/download](https://vortideck.com/download)**. The phone companion app for Android is linked from the same page; pair it with the desktop app over your local Wi-Fi.
+
+To build it yourself, see [Building from source](#building-from-source).
 
 ## What it does
 
@@ -18,6 +47,19 @@ Created and maintained by **Alexi Pawelec** ([@alexiokay](https://github.com/ale
 - **AI assistant.** Bring your own key (OpenRouter, OpenAI, Anthropic) or use local models such as Ollama.
 
 Everything above runs on your machine and is free. An account is only needed for hosted services such as remote access through the VortiDeck relay, marketplace purchases and streaming-account linking.
+
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/media/deck.png" alt="Control deck and button assignments"><br><sub><b>Control deck.</b> Buttons, knobs, toggles and macros.</sub></td>
+    <td width="50%"><img src="docs/media/flows.png" alt="Visual flow editor"><br><sub><b>Visual flows.</b> Chain triggers, OBS actions and more in a node editor.</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/media/overlay.png" alt="Overlay Editor"><br><sub><b>Overlay Editor.</b> Chat, goals, timers and alerts, published to OBS.</sub></td>
+    <td width="50%"><img src="docs/media/phone.png" alt="Phone companion app"><br><sub><b>Phone companion.</b> Your deck on your phone over local Wi-Fi.</sub></td>
+  </tr>
+</table>
 
 ## Repository layout
 

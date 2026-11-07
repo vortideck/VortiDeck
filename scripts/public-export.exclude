@@ -93,6 +93,7 @@ apps/tauri-windows/src-tauri/resources/plugins/vorti-obs-plugin.dll
 # Release workflows need the signing secrets and self-hosted runner; releases run from the private repository
 .github/workflows/desktop-release.yml
 .github/workflows/desktop-cross-platform-release.yml
+.github/workflows/sync-public.yml
 .github/workflows/mobile-release.yml
 .github/workflows/publish-sdk.yml
 .github/workflows/installer-lifecycle.yml
