@@ -1,0 +1,368 @@
+obs_actions:
+  obs_stream_start: Start stream
+  obs_stream_stop: Stop stream 
+  obs_stream_toggle: Toggle stream
+  obs_recording_start: Start recording
+  obs_recording_stop: Stop recording
+  obs_recording_toggle: Toggle recording
+  obs_buffer_start: Start buffer
+  obs_buffer_stop: Stop buffer
+  obs_buffer_toggle: Toggle buffer
+  obs_buffer_save: Save buffer
+  obs_desktop_mute: Mute desktop audio
+  obs_desktop_unmute: Unmute desktop audio
+  obs_desktop_mute_toggle: Toggle desktop audio mute
+  obs_mic_mute: Mute microphone
+  obs_mic_unmute: Unmute microphone
+  obs_mic_mute_toggle: Toggle microphone mute
+  obs_collection_activate: Activate collection
+  obs_scenes_activate: Activate scene
+  obs_scene_activate: Activate scene
+  obs_source_activate: Activate source
+  obs_source_deactivate: Deactivate source
+  obs_source_toggle: Toggle source
+  obs_mixer_mute: Mute mixer
+  obs_mixer_unmute: Unmute mixer
+  obs_mixer_mute_toggle: Toggle mixer mute
+
+
+  parameters:
+    APPLET_OBS_COLLECTION_SELECTION: Select Collection
+    APPLET_OBS_SCENE_SELECTION: Select Scene
+    APPLET_OBS_SOURCE_SELECTION: Select Source
+
+index:
+  connected_devices: Connected Devices
+
+  premium_status: Vorti+ Status
+  valid_until: Valid until
+  plan_name: Plan name
+  manage_subscription: Manage Subscription
+  upgrade_account: Upgrade Account
+
+  see_paired: See paired
+
+  storage_info: Storage Info
+  used_storage: Used Storage
+  clear_cache: Clear Cache
+  current_theme: Current Theme
+
+  no_devices_connected: No devices connected
+  pair_device: Pair Device
+
+  system_status: System Status
+  active: Active
+  hostname: Hostname
+  os_platform: OS / Platform
+  cpu_cores: CPU Cores
+  server_url: Server URL
+  loading_system_info: Loading system details...
+
+
+
+  browser_extension:
+    title: Browser Extension
+    status: Status
+    recent_action: Recent Action
+    install_extension: Install Extension
+    manage_extension: Manage Extension
+    extension_installed: Extension Installed
+    extension_not_installed: Extension Not Installed
+
+
+
+
+connection:
+  connected: Connected
+  disconnected: Disconnected
+  paired: Paired
+  reconnecting: Reconnecting
+  connecting: Connecting
+
+modals:
+  instruction:
+    title: Welcome to VortiDeck
+    description: VortiDeck transforms your mobile device into a customizable control deck for your PC applications.
+    install_app: Install VortiDeck on your PC
+    scan_qr: Open VortiDeck on your mobile and scan the QR code to pair
+    scan_qr_mobile: Scan this QR code to download VortiDeck on your mobile device and unlock the full potential of your setup.
+    customize_apps: Customize and control apps with ease
+    seamless_experience: Enjoy a seamless experience with low latency
+    get_mobile_app: Get the Mobile App
+    visit_website: Visit 
+    browser_extension: Browser Extension - premium
+    enhance_experience: Enhance your experience with our browser extension. Control YouTube, Netflix, and other web apps directly from your mobile device.
+    get_browser_extension: Get the browser extension
+    dont_show_again: Don't show again
+    got_it: Got it!
+    close: Close
+
+  paired:
+    title: Paired Devices
+    invalid_date: Invalid date
+    devices_count: devices connected
+    add_device: Add Device
+    paired_date: Paired on
+    save: Save
+
+  manage_decks:
+    title: Manage Decks
+    subtitle: View, switch, rename and organize your decks
+    close: Close
+    search_decks: Search decks...
+    search_placeholder: Search decks...
+    new_deck: New Deck
+    create_deck: Create Deck
+    enter_deck_name: Deck name...
+    deck_name_placeholder: Enter deck name...
+    active: Active
+    set_active: Set Active
+    active_deck: Active Deck
+    rename: Rename
+    save: Save
+    cancel: Cancel
+    delete: Delete
+    confirm_delete: Delete this deck?
+    cannot_delete_last: Cannot delete the only remaining deck
+    no_decks_found: No decks found
+    no_decks_yet: No decks yet
+    buttons: buttons
+    decks_total: decks total
+    auto_activate_on: "Auto-activate on:"
+    auto_activate_on_game: "Auto-activate on:"
+    auto_activate_coming_soon: "Coming Soon"
+    select_app: "Select App / Window..."
+    select_game: "Select App / Window..."
+    no_app: "None (Manual)"
+    no_game: "None (Manual)"
+    running_windows: "Running Windows"
+    popular_apps: "Popular Presets"
+
+  login:
+    title: Login
+    email: Email
+    password: Password
+    login: Login
+    register: Register
+    or_continue_with_email: Or continue with email
+    continue_with_google: Continue with Google
+    forgot_password: Forgot password?
+    confirm_password: Confirm Password
+    remember_me: Remember me
+    sign_in: Sign in
+    sign_up: Sign up
+    already_have_account: Already have an account?
+    dont_have_account: Don't have an account?
+
+  create_deck:
+    title: Create New Deck
+    deck_name: Deck Name
+    select_game: Select a game
+    auto_activate_on_game: Auto-activate on game
+    new_deck: New Deck
+    deck_settings: Deck Settings
+    set_as_active_deck: Set as active deck
+    ready_to_create: Ready to create
+    please_fill_required_fields: Please fill required fields
+    create_deck: Create Deck
+
+  release_notes:
+    title: New Update Available!
+    close: Close
+    release_notes: Release Notes
+    install_and_restart: Install & Restart
+    new_update: New Update
+    no_notes: No notes available
+    dont_show_again: Don't show again
+    current_version: Current Version
+    new_version: New Version
+    date: Date
+    update_button: Update
+    install_update: Install & Restart
+
+navigation:
+  profiles:
+    active: Active
+    new_deck: New Deck
+    manage_decks: Manage Decks
+
+
+deck_editor:
+  simulator:
+    execution_mode: Execution Mode
+    behavior: Behavior
+    reset_button: Reset Button
+    choose_icon: Choose Icon
+    change_mode: Change Mode
+    executionModes:
+      repeat_while_pressing: Repeat While Pressing
+      run_once: Run Once
+      switch: Toggle
+      queue: Queue
+      
+ 
+
+
+  navigation:
+    assignments: Assignments
+    keys:
+      title: Keys
+      tip: Manage keyboard shortcuts and hotkeys
+      search_keys: Search keys...
+     
+    scripts:
+      title: Scripts
+      tip: Custom scripts and automation
+      search_scripts: Search scripts...
+ 
+    actions:
+      title: Actions
+      tip: Integration actions and triggers
+      search_actions: Search actions...
+    macros:
+      title: Macros
+      tip: Recorded action sequences
+      search_macros: Search macros...
+    flows:
+      title: Flows
+      tip: AI-powered automated workflows
+      search_flows: Search flows...
+      create_new_flow: Create New Flow
+
+    utilities:
+      title: Utilities
+      tip: System utilities and tools
+      search_utilities: Search utilities...
+   
+  keys:
+    no_keys_found: No keys found
+    create_first_key: Create your first key to get started
+  actions:
+    obs_not_running: OBS is not running
+    add_action: Add Action
+  system_control:
+    add_action: Add Action
+  macros:
+    create_new_macro: Create New Macro
+  flows:
+    create_new_flow: Create New Flow
+    no_flows_found: No flows found
+    create_first_flow: Create your first flow to get started
+  scripts:
+    no_scripts_found: No scripts found
+    create_first_script: Create your first script to get started
+  utilities:
+    no_utilities_found: No utilities found
+    create_first_utility: Create your first utility to get started
+  right_panel:
+    title: Button Configuration
+    description: Select a button to configure its actions and appearance
+    button_modes: Button Modes
+    click_press: Click/Press
+    rotary: Rotary
+    toggle: Toggle
+
+store:
+  themes:
+    title: Themes
+    description: Explore and download pretty themes for your deck
+    loginRequired: Login Required
+    loginRequiredDescription: You need to be logged in to download themes from the marketplace.
+    tryAgain: Try Again
+
+
+    uninstall: Uninstall
+    apply: Apply
+    download: Download
+    free: Free
+    active: Active
+
+  plugins:
+    title: Plugins
+    description: Explore and download plugins for your deck
+
+
+
+pages:
+  pair:
+    no_qr_code: No QR code generated yet.
+    scan_qr_code: Scan the QR code to pair your device
+    refreshing_in: Refreshing In
+    pairing_success: Pairing successful! QR code regenerated.
+    generate_new_qr: Generate New QR Code
+    qr_invalidated_title: QR Code Has Been Invalidated
+    qr_invalidated_message: The previous QR code has been used for pairing and is no longer valid. Generate a new QR code to pair another device.
+
+  splashscreen:
+    title: VortiDeck
+    description: The AI-Powered Virtual Deck
+    version: Version
+
+    loading:
+      checking_for_updates: Checking for updates...
+      loading_resources: Loading resources...
+      preparing_workspace: Preparing workspace...
+      starting_up: Starting up...
+
+
+  store:
+    themes:
+      loginRequired: Login Required
+      loginRequiredDescription: You need to be logged in to download themes from the marketplace.
+      loadingMore: Loading more themes...
+      installed: Installed
+      installedDescription: This theme is already installed.
+      download: Download
+      install: Install
+      uninstall: Uninstall
+      apply: Apply
+      tryAgain: Try Again
+      errorTitle: Error Loading Themes
+      errorDescription: An error occurred while loading themes. Please try again.
+
+  account:
+    title: Account
+    subtitle: Manage your account settings and preferences
+    logout: Logout
+    subscription: Subscription
+    lastLogin: Last Login
+    unknown: Unknown
+    anonymous: Anonymous
+    noEmail: No Email
+    profileUpdated: Profile Updated
+    profileUpdatedSuccess: Profile updated successfully
+    updateFailed: Update Failed
+    updateFailedMessage: An error occurred while updating your profile. Please try again.
+    accountSettings: Account Settings
+    activity: Activity
+    recentActivity: Recent Activity
+    never: Never
+    usernamePlaceholder: Enter your username
+
+    upgrade: Upgrade
+    
+    pairedDevices: Paired Devices
+    lastConnected: Last Connected
+
+    free: Free
+    premium: Premium
+    validUntil: Valid until
+
+    username: Username
+    email: Email
+    avatar: Avatar
+
+    updateProfile: Update Profile
+    updating: Updating...
+
+    loggedOut: Logged out
+    loggedOutSuccess: You have been logged out successfully
+    login: Login
+
+    loggedIn: Login successful
+    loggedInSuccess: You have been logged out successfully
+
+
+common:
+  coming_soon: Coming Soon
+

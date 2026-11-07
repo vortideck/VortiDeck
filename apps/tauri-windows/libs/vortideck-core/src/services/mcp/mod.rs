@@ -1,0 +1,41 @@
+// src/commands/mod.rs
+
+pub mod ai_node;
+pub mod anthropic_client;
+pub mod chat;
+pub mod client;
+pub mod client_pool;
+pub mod commands;
+pub mod config;
+pub mod conversation_file;
+pub mod error;
+pub mod flow_adapter;
+pub mod handler;
+pub mod model;
+pub mod overlay_authoring;
+pub mod overlay_settings;
+pub mod provider;
+pub mod session_actor;
+pub mod session_manager;
+pub mod tool;
+pub mod tools;
+pub mod unified_tool_executor;
+
+pub use ai_node::*;
+pub use anthropic_client::*;
+pub use chat::*;
+pub use client::*;
+pub use client_pool::*;
+pub use commands::*;
+pub use config::*;
+pub use conversation_file::*;
+pub use error::*;
+pub use flow_adapter::*;
+pub use handler::*;
+pub use model::*;
+pub use provider::*;
+pub use session_actor::*;
+pub use session_manager::*;
+pub use tool::*;
+pub use tools::*;
+pub use unified_tool_executor::*;

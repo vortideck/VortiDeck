@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.vortideck.desktop</id>
+  <launchable type="desktop-id">com.vortideck.desktop.desktop</launchable>
+  <name>VortiDeck</name>
+  <developer id="com.vortideck">
+    <name>VortiDeck</name>
+  </developer>
+  <summary>Desktop control, automation, and streaming workspace</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <url type="homepage">https://vortideck.com</url>
+  <description>
+    <p>
+      VortiDeck connects desktop controls, workflows, streaming overlays, and
+      first-party integrations.
+    </p>
+  </description>
+  <content_rating type="oars-1.1" />
+</component>

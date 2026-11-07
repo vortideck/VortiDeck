@@ -1,0 +1,35 @@
+{
+  "name": "example-plugin-with-sdk",
+  "version": "1.0.0",
+  "description": "Example plugin using @vortideck/plugin-sdk",
+  "main": "src/main.ts",
+  "scripts": {
+    "build": "vortideck build"
+  },
+  "keywords": ["vortideck", "plugin"],
+  "author": "VortiDeck Team",
+  "private": true,
+  "license": "MIT",
+  "vortideck": {
+    "id": "example.text-processor",
+    "name": "Text Processor Suite",
+    "version": "2.0.1",
+    "author": "VortiDeck Team",
+    "description": "Text processing plugin with 7 nodes - converts text case, counts words, trims whitespace, and more",
+    "vortideck_version": ">=0.7.0",
+    "schema_version": "1.0",
+    "permissions": ["storage"],
+    "web_extensions": true,
+    "web": {
+      "extension": "web/extension.js",
+      "styles": "web/styles.css"
+    }
+  },
+  "dependencies": {
+    "@vortideck/plugin-sdk": "workspace:*"
+  },
+  "devDependencies": {
+    "@extism/js-pdk": "^1.1.1",
+    "typescript": "^7.0.2"
+  }
+}

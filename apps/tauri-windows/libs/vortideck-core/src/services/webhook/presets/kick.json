@@ -1,0 +1,26 @@
+{
+  "name": "Kick Webhooks",
+  "description": "Receive events from Kick streams (typically via backend)",
+  "events": [
+    {
+      "id": "stream.online",
+      "name": "Stream Online",
+      "description": "Stream goes live",
+      "example_payload": {
+        "channel": "streamer_name",
+        "started_at": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "id": "stream.offline",
+      "name": "Stream Offline",
+      "description": "Stream ends",
+      "example_payload": {
+        "channel": "streamer_name"
+      }
+    }
+  ],
+  "registration": null,
+  "signature_verification": null,
+  "documentation": "https://kick.com"
+}

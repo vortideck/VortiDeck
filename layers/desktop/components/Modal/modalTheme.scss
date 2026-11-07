@@ -1,0 +1,165 @@
+.vd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 12050;
+  width: 100%;
+  height: 100vh;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  background: rgba(15, 23, 42, 0.44);
+}
+
+.vd-modal-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 12060;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.vd-modal-card {
+  border-radius: 1rem;
+  border: 1px solid hsl(var(--border2) / 0.78);
+  background: linear-gradient(
+      160deg,
+      hsl(var(--background) / 0.995),
+      hsl(var(--background2) / 0.965)
+    ),
+    linear-gradient(135deg, hsl(var(--button) / 0.05), transparent 50%);
+  box-shadow:
+    0 28px 52px -36px rgba(13, 23, 38, 0.4),
+    0 8px 20px -16px rgba(34, 95, 190, 0.24);
+  color: hsl(var(--text));
+  pointer-events: auto;
+}
+
+.vd-modal-close-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.6rem;
+  border: 1px solid hsl(var(--border2) / 0.82);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--text));
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.vd-modal-close-btn:hover {
+  color: hsl(var(--text));
+  border-color: hsl(var(--border2));
+  background: hsl(var(--background3) / 0.75);
+}
+
+.vd-modal-footer {
+  border-top: 1px solid hsl(var(--border2) / 0.68);
+  background: hsl(var(--background2) / 0.72);
+}
+
+.vd-modal-input,
+.vd-modal-select,
+.vd-modal-textarea {
+  border-radius: 0.72rem;
+  border: 1px solid hsl(var(--border2) / 0.9);
+  background: hsl(var(--background2));
+  color: hsl(var(--text));
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vd-modal-input:focus,
+.vd-modal-select:focus,
+.vd-modal-textarea:focus {
+  outline: none;
+  border-color: hsl(var(--editor-accent));
+  box-shadow: 0 0 0 3px hsl(var(--editor-accent) / 0.15);
+}
+
+.vd-modal-input::placeholder,
+.vd-modal-textarea::placeholder {
+  color: hsl(var(--text2) / 0.9);
+}
+
+.vd-modal-primary-btn {
+  border-radius: 0.74rem;
+  border: none;
+  color: #fff;
+  background: linear-gradient(
+    100deg,
+    hsl(var(--editor-accent, 20 96% 55%) / 1),
+    hsl(var(--editor-accent-2, 20 95% 62%) / 1)
+  );
+  box-shadow: 0 14px 24px -18px rgba(251, 113, 63, 0.78);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.vd-modal-primary-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+.theme-default-dark .vd-modal-overlay,
+.theme-glassy-dark .vd-modal-overlay {
+  background: rgba(2, 6, 23, 0.62);
+}
+
+.fade-enter-active {
+  animation: fade-in 0.3s both;
+}
+
+.fade-leave-active {
+  animation: fade-out 0.3s both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.jump-enter-active {
+  animation: jump-in 0.3s both;
+}
+
+.jump-leave-active {
+  animation: jump-out 0.3s both;
+}
+
+@keyframes jump-in {
+  0% {
+    transform: translateY(-22px) scale(0.98);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes jump-out {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(22px) scale(0.98);
+    opacity: 0;
+  }
+}

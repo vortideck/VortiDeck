@@ -1,0 +1,91 @@
+{
+  "name": "Twitch EventSub",
+  "description": "Receive real-time events from Twitch streams",
+  "events": [
+    {
+      "id": "stream.online",
+      "name": "Stream Online",
+      "description": "Triggered when a stream goes live",
+      "example_payload": {
+        "broadcaster_user_id": "12345",
+        "broadcaster_user_name": "cool_streamer",
+        "broadcaster_user_login": "cool_streamer",
+        "type": "live",
+        "started_at": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "id": "stream.offline",
+      "name": "Stream Offline",
+      "description": "Triggered when a stream goes offline",
+      "example_payload": {
+        "broadcaster_user_id": "12345",
+        "broadcaster_user_name": "cool_streamer",
+        "broadcaster_user_login": "cool_streamer"
+      }
+    },
+    {
+      "id": "channel.follow",
+      "name": "New Follower",
+      "description": "Triggered when someone follows the channel",
+      "example_payload": {
+        "user_id": "67890",
+        "user_name": "new_follower",
+        "user_login": "new_follower",
+        "broadcaster_user_id": "12345",
+        "followed_at": "2024-01-01T12:00:00Z"
+      }
+    },
+    {
+      "id": "channel.subscribe",
+      "name": "New Subscriber",
+      "description": "Triggered when someone subscribes to the channel",
+      "example_payload": {
+        "user_id": "67890",
+        "user_name": "subscriber123",
+        "tier": "1000",
+        "is_gift": false
+      }
+    },
+    {
+      "id": "channel.raid",
+      "name": "Raid",
+      "description": "Triggered when channel receives a raid",
+      "example_payload": {
+        "from_broadcaster_user_id": "98765",
+        "from_broadcaster_user_name": "raider",
+        "viewers": 100
+      }
+    }
+  ],
+  "registration": {
+    "api_url": "https://api.twitch.tv/helix/eventsub/subscriptions",
+    "method": "POST",
+    "auth_type": "bearer",
+    "auth_header": "Authorization",
+    "body_template": {
+      "type": "{{event_type}}",
+      "version": "1",
+      "condition": {
+        "broadcaster_user_id": "{{broadcaster_id}}"
+      },
+      "transport": {
+        "method": "webhook",
+        "callback": "{{webhook_url}}",
+        "secret": "{{secret}}"
+      }
+    },
+    "unregister_url": "https://api.twitch.tv/helix/eventsub/subscriptions?id={{subscription_id}}"
+  },
+  "signature_verification": {
+    "header_name": "Twitch-Eventsub-Message-Signature",
+    "algorithm": "hmac-sha256",
+    "secret_location": "secret",
+    "message_components": [
+      "Twitch-Eventsub-Message-Id",
+      "Twitch-Eventsub-Message-Timestamp",
+      "body"
+    ]
+  },
+  "documentation": "https://dev.twitch.tv/docs/eventsub/"
+}

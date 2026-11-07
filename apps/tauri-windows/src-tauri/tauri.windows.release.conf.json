@@ -1,0 +1,10 @@
+{
+  "bundle": {
+    "targets": [
+      "msi"
+    ],
+    "windows": {
+      "signCommand": "powershell -NoLogo -NoProfile -NonInteractive -File scripts/sign-windows.ps1 -RequireSignature -Path %1"
+    }
+  }
+}

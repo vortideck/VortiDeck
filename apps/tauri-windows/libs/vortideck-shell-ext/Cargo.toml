@@ -1,0 +1,30 @@
+[package]
+name = "vortideck-shell-ext"
+version = "0.1.0"
+license = "GPL-3.0-or-later"
+authors = ["Alexi Pawelec"]
+edition = "2024"
+description = "VortiDeck Windows 11 Shell Extension - IExplorerCommand COM DLL"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[dependencies.windows]
+version = "0.61.0"
+features = [
+    "Win32_Foundation",
+    "Win32_System_Com",
+    "Win32_System_Ole",
+    "Win32_System_Registry",
+    "Win32_UI_Shell",
+    "Win32_UI_Shell_Common",
+    "Win32_Storage_EnhancedStorage",
+    "Win32_System_LibraryLoader",
+]
+
+[dependencies.windows-core]
+version = "0.61.0"

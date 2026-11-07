@@ -1,0 +1,29 @@
+VortiDeck
+Copyright (c) 2024-2026 Alexi Pawelec
+
+The VortiDeck applications and core are licensed under the GNU General Public
+License v3.0 or later (see LICENSE). The plugin SDK (packages/plugin-sdk) and the
+example plugins (examples/) are licensed under the MIT License (see the LICENSE
+file in each of those directories).
+
+"VortiDeck" and the VortiDeck logo are trademarks of Alexi Pawelec and are not
+licensed under the above licenses.
+
+This repository includes the following third-party material, each under its own
+license:
+
+- Binaryen (Apache-2.0) and the Extism JavaScript PDK compiler extism-js
+  (BSD-3-Clause), bundled as prebuilt tools in packages/plugin-sdk/bin.
+  See packages/plugin-sdk/THIRD_PARTY_LICENSES.md.
+
+- tauri-plugin-keep-screen-on 0.1.4 by Krzysztof Andrelczyk (MIT OR Apache-2.0),
+  vendored with one build-file change in
+  apps/tauri-mobile/src-tauri/patches/tauri-plugin-keep-screen-on.
+
+- Fonts in layers/base/public/fonts:
+  Montserrat, Mulish, Public Sans, Righteous, El Messiri and Itim are licensed
+  under the SIL Open Font License 1.1 (OFL.txt next to each font);
+  Roboto is licensed under the Apache License 2.0 (Roboto-LICENSE.txt).
+
+Third-party libraries installed through Cargo and pnpm are not part of this
+repository and are distributed under their own licenses.

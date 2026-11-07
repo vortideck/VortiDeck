@@ -1,0 +1,94 @@
+{
+  "$schema": "../../../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "VortiDeck",
+  "version": "0.7.0",
+  "identifier": "VortiDeck",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://127.0.0.1:4450",
+    "beforeDevCommand": "pnpm run dev",
+    "beforeBuildCommand": "pnpm run generate"
+  },
+  "app": {
+    "windows": [
+      {
+        "visible": false,
+        "label": "splashscreen",
+        "url": "/splashscreen",
+        "title": "VortiDeck",
+        "width": 1016,
+        "height": 769,
+        "minWidth": 1016,
+        "minHeight": 769,
+        "center": true,
+        "resizable": true,
+        "focus": true,
+        "fullscreen": false,
+        "decorations": false,
+        "transparent": true,
+        "dragDropEnabled": false
+      },
+      {
+        "visible": false,
+        "title": "VortiDeck",
+        "url": "/",
+        "label": "main",
+        "minWidth": 1016,
+        "minHeight": 769,
+        "resizable": true,
+        "focus": true,
+        "fullscreen": false,
+        "decorations": false,
+        "transparent": true,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": {
+        "default-src": "'self' customprotocol: asset:",
+        "base-uri": "'self'",
+        "connect-src": "ipc: http://ipc.localhost http: https: ws: wss:",
+        "font-src": "'self' data:",
+        "frame-src": "'self' blob: data: http: https:",
+        "img-src": "'self' asset: http://asset.localhost blob: data: http: https:",
+        "media-src": "'self' asset: http://asset.localhost blob: data: http: https:",
+        "object-src": "'none'",
+        "script-src": "'self' 'wasm-unsafe-eval'",
+        "style-src": "'self' 'unsafe-inline'",
+        "worker-src": "'self' blob:"
+      },
+      "assetProtocol": {
+        "enable": true,
+        "scope": ["$DOCUMENT/VortiDeck/**", "$APPDATA/plugins/*/icon.*"]
+      }
+    }
+  },
+  "bundle": {
+    "createUpdaterArtifacts": true,
+    "active": true,
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  },
+  "plugins": {
+    "updater": {
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEVGRTI5MzNDOThFNTc1MkEKUldRcWRlV1lQSlBpNy92azFlSVpnVTEvYzlGR3c5RGJucHdhRnFZeUgwVC9tWVZQa2tpQURDbnIK",
+      "endpoints": [
+        "https://vortideck-updater.netlify.app/api/update-public?target={{target}}-{{arch}}&version={{current_version}}"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    },
+    "deep-link": {
+      "desktop": {
+        "schemes": ["vortideck"]
+      }
+    }
+  }
+}

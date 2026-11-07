@@ -1,0 +1,26 @@
+components:
+  navbar:
+    contact: kontakt
+    login: zaloguj sie
+    register: rejestr
+    safe: schowek
+    cart: wózek
+    products: produkty
+  footer:
+    example: przykład
+  language_switcher:
+    change_language: zmień język
+  theme_switcher:
+    theme: temat
+    change_theme: zmień motyw
+pages:
+  "404":
+    title: strona nie znaleziona
+  index:
+    title: nuxt 3[]niesamowity[]starter
+  blank:
+    nav: pusty
+    title: pusta strona
+    description: to jest pusta strona
+    just_blank_page_with_title: tylko pusta strona z tytułem
+message: hoi

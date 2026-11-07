@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "vorti-obs-plugin",
+  "version": "1.0.10",
+  "protocolVersion": 1,
+  "platform": "windows",
+  "architecture": "x86_64",
+  "fileName": "vorti-obs-plugin.dll",
+  "sha256": "3BB7B24F0A4E549DD9A711A2A72DBA27FD91F94AAFB84DF5E1AA932120B6C438"
+}

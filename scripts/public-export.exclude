@@ -1,0 +1,98 @@
+# Paths left out of the public repository by scripts/export-public-snapshot.mjs.
+# They stay in the private repository. One pattern per line:
+#   dir/            a directory and everything below it
+#   **/name         the name at any depth
+#   *               any characters except "/"
+
+# Website, marketing and business material (private)
+apps/web-app/
+apps/landing-experiment/
+layers/blog/
+layers/advertiser/
+.github/workflows/nuxthub.yml
+BRAND.md
+VortiDeck-2026-2030-strategy.md
+VortiDeck-product-direction.md
+VortiDeck-streamer-workflows-and-engine-readiness.md
+WEBHOOK_SYSTEM_AUDIT_AND_ROADMAP.md
+docs/ADVERTISEMENT_SYSTEM/
+docs/architecture/MONETIZATION_SPONSOR_AND_AD_ENGINE_SPECIFICATION_2026.md
+docs/future-concepts/
+docs/premiere-*
+docs/production-*
+docs/blueprint-*
+docs/asset-style-lab.md
+docs/hero-image-lab.md
+docs/section-concept-art.md
+
+# Internal planning, reviews and agent instructions
+TODO.md
+**/AGENTS.md
+**/CLAUDE.md
+.claude/
+new-ideas-todo/
+docs/reviews/
+docs/archive/
+docs/development/
+docs/releases/
+
+# Progress reports, migration plans and to-do notes written during development
+FLOW_TYPE_SYSTEM_COMPLETION.md
+apps/tauri-windows/new_architecture/
+apps/tauri-windows/*_COMPLETE.md
+apps/tauri-windows/COMPLETE_*.md
+apps/tauri-windows/PHASE_*.md
+apps/tauri-windows/*_PLAN.md
+apps/tauri-windows/PLUGIN_COUNT_FIX_AND_NEW_ARCHITECTURE_COMPLETE.md
+apps/tauri-windows/PLUGIN_FLOW_INTEGRATION_FIX_AND_ARCHITECTURE_UPDATE.md
+apps/tauri-windows/PLUGIN_FLOW_ARCHITECTURE_ANALYSIS_AND_SOLUTION.md
+apps/tauri-windows/PINGORA_REVERSE_PROXY_ARCHITECTURE.md
+apps/tauri-windows/src-tauri/src/banners/CONTEXT_AWARE_AD_REFRESH.md
+docs/OVERLAY_CORE_ARCHITECTURE_AUDIT.md
+docs/OVERLAY_PLUGIN_EVENT_PRODUCTION_READINESS_AUDIT_AND_PLAN.md
+docs/plugins/IMPLEMENTATION-STATUS.md
+**/*TODO*.md
+**/*todo*.md
+
+# Stray tools and examples unrelated to the apps
+cli
+tools/
+tutorials/
+.agents/
+.hintrc
+.nvmrc
+examples/ari-stasi-server/
+
+# Build output: compiled plugins without source in the repository
+examples/plugin-new-pdk/index.wasm
+examples/plugins/text-processor-bundle/
+
+# Official extism-js and binaryen releases; `vortideck build` downloads and verifies them
+packages/plugin-sdk/bin/extism-js/
+packages/plugin-sdk/bin/binaryen/
+
+# Local files, generated output and junk
+cmake.tar.gz
+.VSCodeCounter/
+.vscode/settings.json
+apps/tauri-windows/src-tauri/todo.txt
+apps/tauri-windows/src-tauri/tree.txt
+**/*.db
+**/*.pem
+fix_state_accesses.ps1
+force-update-packages.js
+reupdate-release.ps1
+
+# Unused code with unclear licensing
+apps/tauri-windows/pingora-proxy-src/
+apps/tauri-windows/certs/
+
+# Built from its own repository and staged by scripts/stage-obs-companion.ps1
+apps/tauri-windows/src-tauri/resources/plugins/vorti-obs-plugin.dll
+
+# Release workflows need the signing secrets and self-hosted runner; releases run from the private repository
+.github/workflows/desktop-release.yml
+.github/workflows/desktop-cross-platform-release.yml
+.github/workflows/mobile-release.yml
+.github/workflows/publish-sdk.yml
+.github/workflows/installer-lifecycle.yml

@@ -1,0 +1,55 @@
+obs_actions:
+  obs_stream_start: Rozpocznij transmisję
+  obs_stream_stop: Zatrzymaj transmisję
+  obs_stream_toggle: Przełącz transmisję
+  obs_recording_start: Rozpocznij nagrywanie
+  obs_recording_stop: Zatrzymaj nagrywanie
+  obs_recording_toggle: Przełącz nagrywanie
+  obs_buffer_start: Rozpocznij buforowanie
+  obs_buffer_stop: Zatrzymaj buforowanie
+  obs_buffer_toggle: Przełącz buforowanie
+  obs_buffer_save: Zapisz bufor
+  obs_desktop_mute: Wycisz dźwięk pulpitu
+  obs_desktop_unmute: Przywróć dźwięk pulpitu
+  obs_desktop_mute_toggle: Przełącz wyciszenie dźwięku pulpitu
+  obs_mic_mute: Wycisz mikrofon
+  obs_mic_unmute: Przywróć dźwięk mikrofonu
+  obs_mic_mute_toggle: Przełącz wyciszenie mikrofonu
+  obs_collection_activate: Aktywuj kolekcję
+  obs_scenes_activate: Aktywuj scenę
+  obs_scene_activate: Aktywuj scenę
+  obs_source_activate: Aktywuj źródło
+  obs_source_deactivate: Dezaktywuj źródło
+  obs_source_toggle: Przełącz źródło
+  obs_mixer_mute: Wycisz mikser
+  obs_mixer_unmute: Przywróć dźwięk miksera
+  obs_mixer_mute_toggle: Przełącz wyciszenie miksera
+
+  parameters:
+    APPLET_OBS_COLLECTION_SELECTION: Wybierz kolekcję
+    APPLET_OBS_SCENE_SELECTION: Wybierz scenę
+    APPLET_OBS_SOURCE_SELECTION: Wybierz źródło
+
+index:
+  connected_devices: Podłączone urządzenia
+  system_status: Status Systemu
+  active: Aktywny
+  hostname: Nazwa hosta
+  os_platform: System / Architektura
+  cpu_cores: Rdzenie CPU
+  server_url: URL Serwera
+  loading_system_info: Ładowanie szczegółów systemu...
+
+
+pages:
+  splashscreen:
+    title: VortiDeck
+    description: Twój inteligentny kontroler makr
+    version: Wersja
+
+    loading:
+      checking_for_updates: Sprawdzanie aktualizacji...
+      loading_resources: Ładowanie zasobów...
+      preparing_workspace: Przygotowywanie przestrzeni roboczej...
+      starting_up: Uruchamianie...
+

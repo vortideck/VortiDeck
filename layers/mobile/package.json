@@ -1,0 +1,38 @@
+{
+  "name": "vortideck_layer-mobile",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev .playground",
+    "dev:prepare": "nuxt prepare .playground",
+    "build": "nuxt build .playground",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground",
+    "lint": "eslint --config ../../eslint.config.mjs ."
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.9.0",
+    "eslint": "9.39.4",
+    "nuxt": "4.5.2",
+    "rolldown": "1.2.6",
+    "typescript": "^7.0.2",
+    "vue": "^3.5.42"
+  },
+  "dependencies": {
+    "@choochmeque/tauri-plugin-biometry-api": "^0.2.0",
+    "@noble/ciphers": "^0.4.1",
+    "@noble/curves": "^1.9.7",
+    "@noble/hashes": "^1.8.0",
+    "@tauri-apps/plugin-deep-link": "^2.6.3",
+    "@tauri-apps/plugin-haptics": "^2.4.2",
+    "@tauri-apps/plugin-http": "^2.8.3",
+    "@tauri-apps/plugin-log": "2.10.1",
+    "@tauri-apps/plugin-notification": "2.8.0",
+    "@tauri-apps/plugin-opener": "^2.7.2",
+    "canonicalize": "^2.1.0",
+    "device-detector-js": "^3.0.3",
+    "tauri-plugin-keep-screen-on-api": "^0.1.4",
+    "uuid": "^9.0.1"
+  }
+}

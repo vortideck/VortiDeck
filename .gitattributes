@@ -1,0 +1,9 @@
+src export-ignore
+* export-ignore
+
+# Generated SDK artifacts are compared byte-for-byte on Windows and Linux.
+/packages/plugin-sdk/src/pdk.generated.ts text eol=lf
+/packages/plugin-sdk/src/index.d.ts text eol=lf
+/packages/plugin-sdk/src/api.ts text eol=lf
+/examples/plugin-new-pdk/src/pdk.generated.ts text eol=lf
+/examples/plugin-new-pdk/src/index.d.ts text eol=lf

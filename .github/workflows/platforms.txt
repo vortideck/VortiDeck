@@ -1,0 +1,5 @@
+matrix:
+    platform: [macos-latest, ubuntu-latest, windows-latest]
+
+
+to fix self-hosted: Running git config --system core.fsmonitor false and git config core.fsmonitor false in the repository directory of the runner solved the issue for me.

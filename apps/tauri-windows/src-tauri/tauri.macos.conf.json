@@ -1,0 +1,12 @@
+{
+  "identifier": "com.vortideck.desktop",
+  "bundle": {
+    "targets": [
+      "app",
+      "dmg"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "11.0"
+    }
+  }
+}

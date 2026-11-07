@@ -1,0 +1,56 @@
+name: Test Plugin SDK
+
+on:
+  push:
+    branches: [main, feature/plugin-overhaul]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [22.x, 24.x]
+
+    env:
+      # Source checkouts download the pinned extism-js and binaryen releases on first build.
+      VORTIDECK_TOOLCHAIN_DIR: ${{ github.workspace }}/.toolchain
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache the plugin toolchain
+        uses: actions/cache@v4
+        with:
+          path: .toolchain
+          key: vortideck-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('packages/plugin-sdk/bin/fetch-toolchain.js') }}
+
+      - name: Install SDK dependencies
+        run: |
+          cd packages/plugin-sdk
+          npm install
+          npm run build
+
+      - name: Install example plugin dependencies
+        run: |
+          cd examples/plugin-with-sdk
+          npm install
+
+      - name: Build example plugin
+        run: |
+          cd examples/plugin-with-sdk
+          npm run build
+
+      - name: Verify WASM output
+        run: |
+          cd examples/plugin-with-sdk
+          ls -lh dist/*.wasm

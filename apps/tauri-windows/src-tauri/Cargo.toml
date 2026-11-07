@@ -1,0 +1,194 @@
+[package]
+name = "VortiDeck"
+default-run = "VortiDeck" 
+version = "0.7.0"
+description = "VortiDeck desktop app"
+authors = ["Alexi Pawelec"]
+license = "GPL-3.0-or-later"
+repository = ""
+edition = "2024"
+rust-version = "1.90.0"
+
+[package.metadata.cargo-machete]
+# Used from build.rs; cargo-machete intentionally scans crate source only.
+ignored = ["tauri-build"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+# Main app passes features through to core library
+default = ["new-state-system", "websocket-integration", "obs-integration", "plugin-system", "extism"]
+
+# Enabled by `tauri build` so packaged applications load the generated
+# frontend through Tauri's production asset protocol instead of `devUrl`.
+custom-protocol = ["tauri/custom-protocol"]
+
+# Feature flags for migration control (passed through to vortideck-core)
+new-state-system = ["vortideck-core/new-state-system"]
+legacy-state = ["vortideck-core/legacy-state"]
+websocket-integration = ["vortideck-core/websocket-integration"]
+obs-integration = ["vortideck-core/obs-integration"]
+plugin-system = ["vortideck-core/plugin-system"]
+extism = ["vortideck-core/extism"]
+discord-inbound = ["vortideck-core/discord-inbound"]
+
+# Icons system features
+icons-server = ["vortideck-core/icons-server"]
+
+# Deployment target features
+desktop = ["vortideck-core/desktop", "icons-server"]
+server = ["vortideck-core/server"]
+cli = ["vortideck-core/cli"]
+acceptance-test-hooks = ["vortideck-core/acceptance-test-hooks"]
+# tauri feature removed - core library is now platform-agnostic
+
+[lib]
+name = "app_lib"
+# This package is the desktop host. Android and iOS use the separate
+# apps/tauri-mobile crate, and no desktop packaging path consumes a C ABI
+# library, so only the Rust library used by the VortiDeck binary is required.
+crate-type = ["rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.7.4", features = [] }
+
+
+[dependencies]
+# Core library (platform-agnostic)
+vortideck-core = { path = "../libs/vortideck-core" }
+
+serde_json_canonicalizer = "0.3.1"
+serde_json = { version = "1.0", features = ["preserve_order"] }
+serde = { version = "1.0", features = ["derive"] }
+log = "0.4"
+tauri = { version = "2.12.5", features = ["protocol-asset", "tray-icon", "webview-data-url"] }
+tauri-plugin-log = { version = "2.10.1", features = ["colored"] }
+tauri-plugin-websocket = "2.5.0"
+chrono = "0.4"
+# Pingora removed - using Warp unified server instead
+
+# Universal adapter dependencies
+hostname = "0.4.0"
+num_cpus = "1.16.0"
+
+# certs = { path = "../certs"  }
+
+tokio = { version = "1.42.0", features = ["fs", "io-util", "macros", "net", "process", "rt-multi-thread", "sync", "time"] }
+tokio-tungstenite = {version = "0.26.1", features = ["native-tls"] }
+rustls = { version = "0.23.21", default-features = false, features = ["ring", "std", "tls12", "logging"] }
+
+thiserror = "2.0.5"
+futures-util = "0.3.31"
+tauri-plugin-shell = "2.6.0"
+local-ip-address = "0.6.3"
+mdns-sd = "0.13.1"
+qrcode = { version = "0.14.1", default-features = true }
+image = "0.25.5"
+base64 = "0.22.1"
+ed25519-dalek = { version = "2", default-features = false, features = ["std"] }
+hex = "0.4"
+semver = "1"
+platform-info = "2.0.4"
+device_query = "4.0.1"
+enigo = "0.6.1"
+diesel = { version = "2.3.12", features = ["sqlite", "r2d2", "returning_clauses_for_sqlite_3_35"] }
+dotenvy = "0.15"
+tauri-plugin-store = "2.5.0"
+tauri-plugin-fs = "2.7.1"
+tauri-plugin-dialog = "2.8.4"
+tauri-plugin-notification = "2.8.0"
+warp = "0.3.7"
+tauri-plugin-process = "2.4.0"
+tauri-plugin-deep-link = "2.6.3"
+tauri-plugin-http = { version = "2.8.3", features = ["json", "cookies", "native-tls"] }
+tauri-plugin-window-state = "2"
+tauri-plugin-pinia = "3.7.1"
+tauri-plugin-os = "2.4.0"
+reqwest = { version = "0.13", default-features = false, features = ["json", "query", "cookies", "gzip", "multipart", "stream", "form", "native-tls"] }
+# pyo3 = { version = "0.24.1", features= ["auto-initialize", "abi3-py39", "generate-import-lib"] }
+
+# MCP SERVER DEPS
+rmcp = { version = "3.1.4", features = ["client", "server", "macros", "auth", "transport-child-process", "transport-io", "transport-async-rw", "transport-streamable-http-client-reqwest", "transport-streamable-http-server", "tower", "reqwest-native-tls"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+anyhow = "1.0"
+async-trait = "0.1.68"
+futures = "0.3.31"
+shlex = "1.3.0"
+tauri-plugin-opener = "2.7.2"
+urlencoding = "2.1"
+sysinfo = "0.30"
+tempfile = "3"
+
+# PostHog analytics
+better-posthog = "0.2"
+tauri-plugin-better-posthog = "0.1"
+
+# E2EE Security dependencies
+x25519-dalek = "2.0"           # ECDH key exchange for pairing
+hmac = "0.12"                  # HMAC-SHA256 for message signing
+sha2 = "0.10"                  # SHA-256 hashing
+chacha20poly1305 = "0.10"      # Encryption for tokens
+
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.55.0"
+windows = { version = "0.61.0", features = [
+            "Win32_Foundation",
+            "Win32_Media_Audio",
+            "Win32_System_Com",
+            "Win32_Media_Audio_Endpoints",
+            "Win32_System_Com_StructuredStorage",
+            "Win32_System_Variant",
+            "Win32_System_Memory",
+            "Win32_System_Power",
+            "Win32_System_Registry",
+            "Win32_System_LibraryLoader",
+            "Win32_UI_Shell",
+            "Win32_Graphics_Gdi",
+            "Win32_UI_WindowsAndMessaging"  ] }
+
+#windows-implement = "0.60.1"
+
+
+[dependencies.uuid]
+version = "1.11.0"
+features = [
+    "v4",                # Lets you generate random UUIDs
+    "fast-rng",          # Use a faster (but still sufficiently random) RNG
+    "macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
+]
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-autostart = "2.7.0"
+tauri-plugin-single-instance = {version = "2.5.5", features = ["deep-link"] }
+tauri-plugin-updater = "2.14.1"
+
+[target.'cfg(any(target_os = "macos", windows, target_os = "linux"))'.dependencies]
+tauri-plugin-autostart = "2.7.0"
+
+[[bin]]
+name = "VortiDeck"
+path = "src/main.rs"  # This is the main entry point for your Tauri app
+
+[dev-dependencies]
+
+[profile.dev]
+# Keep filename/line backtraces while avoiding full type/variable debug data for
+# the large desktop host and dependencies. Development checks remain enabled.
+# For a native debugger session: CARGO_PROFILE_DEV_DEBUG=2.
+debug = "line-tables-only"
+
+[profile.inspection]
+# Production protocol and near-release code generation, optimized for quick
+# local package inspection. Canonical release/MSI builds still use `release`.
+inherits = "release"
+opt-level = 1
+lto = false
+codegen-units = 256
+incremental = true
+
+
+
+#[target.'cfg(not(any(target_os = "android", target_arch = "wasm32")))'.dependencies.libsqlite3-sys]
+#features = ["bundled"]
+#version = "0.28"

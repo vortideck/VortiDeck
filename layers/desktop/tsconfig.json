@@ -1,0 +1,15 @@
+{
+  "extends": "../base/tsconfig.json",
+  "include": ["types/**/*.d.ts", "**/*.vue", "**/*.ts", "**/*.tsx"],
+  "compilerOptions": {
+    "module": "ESNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "types": []
+  },
+  "typeRoots": ["./node_modules/@types", "./src"],
+  "exclude": ["node_modules"]
+}

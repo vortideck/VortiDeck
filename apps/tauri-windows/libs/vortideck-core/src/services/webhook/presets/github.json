@@ -1,0 +1,79 @@
+{
+  "name": "GitHub Webhooks",
+  "description": "Receive events from GitHub repositories",
+  "events": [
+    {
+      "id": "push",
+      "name": "Push",
+      "description": "Code pushed to repository",
+      "example_payload": {
+        "ref": "refs/heads/main",
+        "repository": {
+          "name": "my-repo",
+          "full_name": "user/my-repo"
+        },
+        "commits": []
+      }
+    },
+    {
+      "id": "pull_request",
+      "name": "Pull Request",
+      "description": "Pull request opened, closed, or updated",
+      "example_payload": {
+        "action": "opened",
+        "pull_request": {
+          "title": "Feature request",
+          "number": 42
+        }
+      }
+    },
+    {
+      "id": "issues",
+      "name": "Issue",
+      "description": "Issue opened, closed, or updated",
+      "example_payload": {
+        "action": "opened",
+        "issue": {
+          "title": "Bug report",
+          "number": 10
+        }
+      }
+    },
+    {
+      "id": "release",
+      "name": "Release",
+      "description": "Release published",
+      "example_payload": {
+        "action": "published",
+        "release": {
+          "tag_name": "v1.0.0",
+          "name": "Version 1.0.0"
+        }
+      }
+    }
+  ],
+  "registration": {
+    "api_url": "https://api.github.com/repos/{{owner}}/{{repo}}/hooks",
+    "method": "POST",
+    "auth_type": "bearer",
+    "auth_header": "Authorization",
+    "body_template": {
+      "name": "web",
+      "active": true,
+      "events": ["{{event_type}}"],
+      "config": {
+        "url": "{{webhook_url}}",
+        "content_type": "json",
+        "secret": "{{secret}}"
+      }
+    },
+    "unregister_url": "https://api.github.com/repos/{{owner}}/{{repo}}/hooks/{{subscription_id}}"
+  },
+  "signature_verification": {
+    "header_name": "X-Hub-Signature-256",
+    "algorithm": "hmac-sha256",
+    "secret_location": "secret",
+    "message_components": ["body"]
+  },
+  "documentation": "https://docs.github.com/en/webhooks"
+}

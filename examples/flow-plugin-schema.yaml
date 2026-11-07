@@ -1,0 +1,244 @@
+# yaml-language-server: $schema=https://xtp.dylibso.com/assets/wasm/schema.json
+# Learn more at https://docs.xtp.dylibso.com/docs/concepts/xtp-schema
+version: v1-draft
+
+exports:
+  register:
+    description: |
+      Register the plugin with VortiDeck system.
+      Called when the plugin is first loaded.
+    input:
+      type: string
+      description: "Empty string parameter"
+      contentType: text/plain; charset=utf-8
+    output:
+      type: string
+      description: "Registration confirmation message"
+      contentType: text/plain; charset=utf-8
+
+  get_metadata:
+    description: |
+      Get plugin metadata for VortiDeck flow builder.
+      Returns JSON object with plugin information.
+    input:
+      type: string
+      description: "Empty string parameter"
+      contentType: text/plain; charset=utf-8
+    output:
+      contentType: application/json
+      $ref: "#/components/schemas/PluginMetadata"
+
+  execute:
+    description: |
+      Execute the plugin with given parameters.
+      Main plugin logic implementation.
+      Uses FlowParams helper for type-safe parameter extraction.
+    input:
+      contentType: application/json
+      $ref: "#/components/schemas/ExecutionParams"
+    output:
+      contentType: application/json
+      $ref: "#/components/schemas/ExecutionResult"
+
+# Host functions available to plugins
+imports:
+  vortideck_log:
+    description: |
+      Log a message to VortiDeck console for debugging.
+    input:
+      contentType: application/x-binary
+      type: buffer
+      description: "Memory pointer to message string"
+    output:
+      contentType: application/x-binary
+      type: buffer
+      description: "Memory pointer to result"
+
+  vortideck_register_node:
+    description: |
+      Register a flow node with VortiDeck system.
+      Used during plugin initialization.
+    input:
+      contentType: application/x-binary
+      type: buffer
+      description: "Memory pointer to JSON metadata"
+    output:
+      contentType: application/x-binary
+      type: buffer
+      description: "Memory pointer to result"
+
+  vortideck_get_context:
+    description: |
+      Get the current VortiDeck execution context.
+      Provides access to flow execution state.
+    output:
+      contentType: application/x-binary
+      type: buffer
+      description: "Memory pointer to context data"
+
+components:
+  schemas:
+    ExecutionParams:
+      description: |
+        Raw flow parameters with metadata passed to the plugin during execution.
+        Use FlowParams helper class for type-safe parameter extraction.
+        Supports both flow format: {"param": {"value": "text", "type": "string", "attached": false}}
+        and direct format: {"param": "text"} for backward compatibility.
+      type: object
+      additionalProperties: true
+      properties:
+        # No required structure - plugins use FlowParams helper to extract values
+        # Examples of possible parameter formats:
+        input:
+          oneOf:
+            - type: string
+              description: "Direct string value"
+            - type: object
+              description: "Flow format with metadata"
+              properties:
+                value:
+                  description: "Parameter value"
+                type:
+                  type: string
+                  description: "Parameter type (string, number, boolean, object)"
+                attached:
+                  type: boolean
+                  description: "Whether parameter is connected to another node"
+        text:
+          oneOf:
+            - type: string
+            - type: object
+              properties:
+                value: {}
+                type: { type: string }
+                attached: { type: boolean }
+        # Any other parameters follow the same pattern
+
+    ExecutionResult:
+      description: "Result returned by the plugin after execution"
+      required:
+        - success
+      properties:
+        success:
+          type: boolean
+          description: "Whether the execution was successful"
+        output:
+          type: string
+          description: "The main output data (primary output port)"
+        outputs:
+          type: array
+          items:
+            type: string
+          description: "Array of outputs for multiple output ports"
+        error:
+          type: string
+          description: "Error message if execution failed"
+        error_code:
+          type: string
+          description: "Specific error code for programmatic handling"
+          enum:
+            - "MISSING_INPUT"
+            - "INVALID_RANGE"
+            - "TYPE_ERROR"
+            - "EXECUTION_ERROR"
+            - "TIMEOUT_ERROR"
+            - "NETWORK_ERROR"
+
+    PluginMetadata:
+      description: "Plugin metadata for VortiDeck flow system"
+      required:
+        - id
+        - name
+        - description
+        - category
+        - type_color
+        - outputs_count
+      properties:
+        id:
+          type: string
+          description: "Unique plugin identifier (auto-prefixed with 'plugin.' by VortiDeck)"
+          pattern: "^[a-z0-9-]+$"
+        name:
+          type: string
+          description: "Display name of the plugin"
+          maxLength: 50
+        description:
+          type: string
+          description: "What this plugin does"
+          maxLength: 200
+        category:
+          type: string
+          description: "Plugin category"
+          enum:
+            - "TEXT_PROCESSING"
+            - "DATA_CONVERSION"
+            - "UTILITIES"
+            - "INTEGRATIONS"
+            - "MATH"
+            - "VALIDATION"
+            - "CUSTOM"
+        category_display_name:
+          type: string
+          description: "Custom display name for the category (optional)"
+        subcategory:
+          type: string
+          description: "Optional second-level group shown inside the category"
+          maxLength: 30
+        type_color:
+          type: string
+          description: "Hex color for the plugin node"
+          pattern: "^#[0-9A-Fa-f]{6}$"
+        outputs_count:
+          type: integer
+          description: "Number of output ports for the node"
+          minimum: 1
+          maximum: 10
+        parameters_schema:
+          type: object
+          description: |
+            JSON schema defining the plugin's input parameters.
+            Should follow JSON Schema Draft 7 specification.
+          properties:
+            type:
+              const: "object"
+            properties:
+              type: object
+              description: "Parameter definitions"
+            required:
+              type: array
+              items:
+                type: string
+              description: "List of required parameter names"
+        version:
+          type: string
+          description: "Plugin version (semantic versioning recommended)"
+          pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9-]+)?$"
+        author:
+          type: string
+          description: "Plugin author/creator"
+          maxLength: 50
+        tags:
+          type: array
+          items:
+            type: string
+            maxLength: 20
+          description: "Tags for plugin discovery"
+          maxItems: 10
+
+    FlowParameter:
+      description: "VortiDeck flow parameter format with metadata"
+      type: object
+      required:
+        - value
+        - type
+        - attached
+      properties:
+        value:
+          description: "The actual parameter value"
+        type:
+          type: string
+          description: "Parameter type"
+          enum: ["string", "number", "boolean", "object", "array"]
+        attached:
+          type: boolean
+          description: "Whether this parameter is connected to another node's output"

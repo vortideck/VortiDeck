@@ -1,0 +1,162 @@
+[package]
+name = "vortideck-core"
+version = "0.7.0"
+edition = "2024"
+description = "VortiDeck Core Library - Headless business logic"
+authors = ["Alexi Pawelec"]
+license = "GPL-3.0-or-later"
+
+[features]
+# Core library should define the actual feature implementations
+default = ["new-state-system", "websocket-integration", "obs-integration", "plugin-system", "extism"]
+
+# Feature flags for migration control
+new-state-system = []  # Enable new StateManager (default)
+legacy-state = []      # Keep old state system for compatibility
+websocket-integration = ["new-state-system"]  # WebSocket support in new state
+obs-integration = ["new-state-system"]        # OBS integration in new state
+plugin-system = ["new-state-system", "extism"]  # Plugin system support with WASM
+extism = ["dep:extism"]  # WASM plugin runtime
+discord-inbound = ["dep:twilight-gateway", "dep:twilight-http", "dep:twilight-model"]
+
+# Icons system features
+icons-server = []      # HTTP server for serving icons to mobile clients
+
+# Deployment target features (from architecture)
+desktop = ["icons-server"]  # Desktop includes icon server
+server = []
+cli = []
+acceptance-test-hooks = [] # Isolated packaged-process recovery harness; never enabled in production
+# tauri feature removed - core library is now platform-agnostic
+
+[dependencies]
+# Core dependencies
+# jsonschema 0.53 uses CompactFormatter::default, unavailable in older 1.0 locks.
+serde_json = "1.0.151"
+jsonschema = { version = "0.53", default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+semver = "1"
+log = "0.4"
+chrono = "0.4"
+colored = "2.1.0"
+lazy_static = "1.4"
+tokio = { version = "1.42.0", features = ["full"] }
+tokio-util = { version = "0.7.13", features = ["rt"] }
+tokio-tungstenite = { version = "0.26.1", features = ["native-tls"] }
+tokio-rustls = { version = "0.26.1", default-features = false, features = ["ring", "logging", "tls12"] }
+rustls = { version = "0.23.21", default-features = false, features = ["ring", "std", "tls12", "logging"] }
+rustls-pki-types = "1.10.1"
+argh = "0.1.13"
+rustls-pemfile = "2.2.0"
+miette = {version="7.4.0", features= ["fancy"] }
+thiserror = "2.0.5"
+futures-channel = "0.3.31"
+futures-util = "0.3.31"
+tracing-journald = "=0.3.1"
+local-ip-address = "0.6.3"
+simple-dns = "0.10.0"
+mdns-sd = "0.13.1"
+env_logger = "0.11.5"
+qrcode = { version = "0.14.1", default-features = true }
+image = "0.25.5"
+webp = "0.3"
+base64 = "0.22.1"
+infer = "0.16"
+glob = "0.3.1"
+platform-info = "2.0.4"
+device_query = "4.0.1"
+enigo = "0.6.1"
+sysinfo = "0.30"
+
+# Webhook security dependencies (for internet deployment)
+hmac = "0.12"
+sha2 = "0.10"
+serde_json_canonicalizer = "0.3.1"
+# Package signature verification (first-party + marketplace verified-creator).
+ed25519-dalek = { version = "2", default-features = false, features = ["std"] }
+hex = "0.4"
+
+# System locale detection (platform-agnostic)
+sys-locale = "0.3"
+
+# Database
+diesel = { version = "2.3.12", features = ["sqlite", "r2d2", "returning_clauses_for_sqlite_3_35"] }
+diesel_migrations = "2.3.2"
+schemars = "0.8.22"
+dotenvy = "0.15"
+dirs = "6.0.0"
+diesel-derive-enum = { version = "2.1.0", features = ["sqlite"] }
+keyring = { version = "3.6.1", features = ["apple-native", "windows-native", "sync-secret-service"] }
+reqwest = { version = "0.13", default-features = false, features = ["json", "cookies", "gzip", "multipart", "stream", "form", "native-tls", "blocking"] }
+rusqlite = { version = "0.29", features = ["bundled"] }
+once_cell = "1.19"
+
+# MCP SERVER DEPS
+rmcp = { version = "3.1.4", features = ["client", "server", "macros", "auth", "transport-child-process", "transport-io", "transport-async-rw", "transport-streamable-http-client-reqwest", "transport-streamable-http-server", "tower", "reqwest-native-tls"] }
+toml = "0.8"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+rand = "0.9.0"
+anyhow = "1.0"
+async-trait = "0.1.68"
+regex = "1.10"
+tower = "0.5"
+pin-project-lite = "0.2.13"
+futures = "0.3"
+hyper = { version = "1.2.0", features = ["client", "server", "http1"] }
+hyper-util = { version = "0.1.3", features = ["tokio"] }
+webpki-roots = "0.26.0"
+notify = "8.2.0"
+uuid = { version = "1.11.0", features = ["v4", "fast-rng", "serde"] }
+urlencoding = "2.1"
+
+# 🚀 UNIVERSAL ARCHITECTURE: Zero platform dependencies in core
+axum = { version = "0.7", features = ["macros"] }
+clap = { version = "4.0", features = ["derive"] }
+trust-dns-server = "0.23"
+rodio = "0.20.1"
+
+# WASM Plugin Support (optional)
+extism = { version = "1.30.0", optional = true }
+twilight-gateway = { version = "0.17.1", default-features = false, features = ["rustls-webpki-roots"], optional = true }
+twilight-http = { version = "0.17.1", default-features = false, features = ["rustls-webpki-roots"], optional = true }
+twilight-model = { version = "0.17.1", optional = true }
+vortideck-host-macro = { path = "../vortideck-host-macro" }
+
+# ZIP archive support for plugin bundles
+zip = "6.0"
+
+url = "2.5"
+shlex = "1.3"
+bcrypt = "0.15"
+md5 = "0.7"
+tempfile = "3"
+
+[dev-dependencies]
+
+# 🎉 Platform-agnostic webhook implementation
+# Warp dependency removed - HTTP handling moved to platform adapter layer
+# Webhooks now use platform-agnostic handler (handler.rs) + Warp adapter (src-tauri/adapters/webhook_routes.rs)
+
+# Tauri dependency removed - core library is now platform-agnostic
+# All Tauri-specific code moved to adapter layer
+
+[build-dependencies]
+vortideck-pdk-gen = { path = "../vortideck-pdk-gen" }
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.55.0"
+windows = { version = "0.61.0", features = [
+            "Win32_Foundation",
+            "Win32_Media_Audio",
+            "Win32_System_Com",
+            "Win32_Media_Audio_Endpoints",
+            "Win32_System_Com_StructuredStorage",
+            "Win32_System_Variant",
+            "Win32_System_Memory",
+            "Win32_System_Power",
+            "Win32_System_Registry",
+            "Win32_UI",
+            "Win32_UI_WindowsAndMessaging",
+            "Win32_System_Threading"  ] }
+windows-core = "0.61.0" 

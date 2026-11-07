@@ -1,0 +1,44 @@
+{
+  "name": "vortideck_layer-desktop",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev .playground",
+    "dev:prepare": "nuxt prepare .playground",
+    "build": "nuxt build .playground",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground",
+    "lint": "eslint --config ../../eslint.config.mjs ."
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.9.0",
+    "dropzone": "6.0.0-beta.2",
+    "eslint": "9.39.4",
+    "nuxt": "4.5.2",
+    "nuxt-swiper": "2.0.1",
+    "rolldown": "1.2.6",
+    "typescript": "^7.0.2",
+    "vue-tsc": "3.3.11",
+    "vue": "^3.5.42"
+  },
+  "dependencies": {
+    "@tauri-apps/plugin-autostart": "^2.7.0",
+    "@tauri-apps/plugin-deep-link": "^2.6.3",
+    "@tauri-apps/plugin-dialog": "^2.8.4",
+    "@tauri-apps/plugin-notification": "2.8.0",
+    "@tauri-apps/plugin-fs": "^2.7.1",
+    "@tauri-apps/plugin-log": "2.10.1",
+    "@tauri-apps/plugin-opener": "^2.7.2",
+    "@tauri-apps/plugin-process": "^2.4.0",
+    "@tauri-apps/plugin-shell": "2.6.0",
+    "@tauri-apps/plugin-updater": "^2.14.1",
+    "@tauri-apps/plugin-websocket": "^2.5.0",
+    "@vueuse/core": "^13.9.0",
+    "@vueuse/nuxt": "^13.9.0",
+    "gojs": "^3.0.26",
+    "marked": "^17.0.1",
+    "swapy": "^1.0.5",
+    "vue-iframes": "^0.0.21"
+  }
+}

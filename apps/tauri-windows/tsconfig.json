@@ -1,0 +1,5 @@
+{
+  // Nuxt's generated project already includes and types every extended layer.
+  // Extending a layer tsconfig here overwrites Nuxt globals and app-level aliases.
+  "extends": "./.nuxt/tsconfig.json"
+}

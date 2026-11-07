@@ -1,0 +1,18 @@
+app_id = ""
+
+# This is where 'xtp plugin push' expects to find the wasm file after the build script has run.
+bin = "dist/text-processor-plugin.wasm"
+extension_point_id = ""
+
+# This is the 'binding' name used for the plugin.
+name = "vorti-flow-node"
+
+[scripts]
+# xtp plugin build runs this script to generate the wasm file
+build = "bash prepare.sh && npm run build"
+
+# xtp plugin init runs this script to format the code
+format = "npm run format"
+
+# xtp plugin init runs this script before running the format script
+prepare = "bash prepare.sh"

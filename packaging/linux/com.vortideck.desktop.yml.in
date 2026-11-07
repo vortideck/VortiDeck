@@ -1,0 +1,29 @@
+id: com.vortideck.desktop
+runtime: org.gnome.Platform
+runtime-version: "50"
+sdk: org.gnome.Sdk
+command: VortiDeck
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+  - --talk-name=org.kde.StatusNotifierWatcher
+modules:
+  - name: vortideck
+    buildsystem: simple
+    sources:
+      - type: file
+        path: "@DEB_PATH@"
+      - type: file
+        path: com.vortideck.desktop.metainfo.xml
+    build-commands:
+      - mkdir deb-extract
+      - cd deb-extract && ar -x ../*.deb && tar -xf data.tar.*
+      - binary=$(find deb-extract/usr/bin -maxdepth 1 -type f -print -quit); test -n "$binary"; install -Dm755 "$binary" /app/bin/VortiDeck
+      - mkdir -p /app/lib && cp -a deb-extract/usr/lib/. /app/lib/
+      - desktop_file=$(find deb-extract/usr/share/applications -name '*.desktop' -print -quit); install -Dm644 "$desktop_file" /app/share/applications/com.vortideck.desktop.desktop
+      - sed -i 's/^Exec=.*/Exec=VortiDeck/; s/^Icon=.*/Icon=com.vortideck.desktop/' /app/share/applications/com.vortideck.desktop.desktop
+      - for icon in $(find deb-extract/usr/share/icons -type f -name '*.png'); do relative=${icon#deb-extract/usr/share/icons/}; destination=/app/share/icons/${relative%/*}/com.vortideck.desktop.png; install -Dm644 "$icon" "$destination"; done
+      - install -Dm644 com.vortideck.desktop.metainfo.xml /app/share/metainfo/com.vortideck.desktop.metainfo.xml

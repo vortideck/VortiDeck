@@ -1,0 +1,157 @@
+name: Release Quality
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "release/**"
+
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    name: Frontend and contracts
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Verify TypeScript 7 engine
+        run: pnpm check:typescript-engine
+      - name: Enforce Nuxt layer boundaries
+        run: pnpm check:layer-boundaries
+      - name: Verify frontend lint configuration and gate anchors
+        run: pnpm check:lint-gate
+      - name: Reject new desktop lint diagnostics
+        run: pnpm check:lint-baseline
+      - name: Reject high and critical production advisories
+        run: pnpm audit --prod --audit-level high
+      - name: Prepare Nuxt
+        run: pnpm --filter vortideck-desktop run postinstall
+      - name: Reject new desktop type diagnostics
+        run: pnpm check:typecheck-baseline
+      - name: Validate Tauri dependency contracts
+        run: pnpm check:tauri-versions
+
+      - name: Run focused desktop UI tests
+        run: pnpm --filter vortideck-desktop test
+      - name: Verify generated plugin SDK artifacts
+        run: pnpm check:plugin-sdk-generated
+      - name: Compile documented minimal plugin contract
+        run: pnpm --filter @vortideck/plugin-sdk run check:contract
+      - name: Build plugin SDK declarations
+        run: pnpm --filter @vortideck/plugin-sdk run build
+      - name: Build documented SDK plugin
+        run: pnpm --filter vortideck-plugin-sdk-contract run build
+      - name: Publish SDK contract fixture
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdk-plugin-contract
+          path: examples/plugin-sdk-contract/dist/vortideck-plugin-sdk-contract.wasm
+          if-no-files-found: error
+      - name: Generate desktop frontend
+        run: pnpm --filter vortideck-desktop run generate
+
+  rust-core:
+    name: Rust core and durable runtime
+    needs: frontend
+    runs-on: windows-2022
+    env:
+      # A short target path avoids MSBuild path failures in AWS-LC CMake probes.
+      CARGO_TARGET_DIR: C:\vdt
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: "apps/tauri-windows/libs/vortideck-core -> ${{ env.CARGO_TARGET_DIR }}"
+      - name: Fetch SDK contract fixture
+        uses: actions/download-artifact@v4
+        with:
+          name: sdk-plugin-contract
+          path: examples/plugin-sdk-contract/dist
+      - name: Check formatting
+        run: cargo fmt --manifest-path apps/tauri-windows/libs/vortideck-core/Cargo.toml -- --check
+      - name: Reject new core Clippy diagnostics
+        run: node scripts/check-diagnostic-baseline.mjs core-clippy
+      - name: Run core and durable-runtime tests
+        # The core integration binaries are individually large; serial linking
+        # avoids nondeterministic MSVC LNK1102 failures on Windows runners.
+        run: cargo test -j 1 --locked --manifest-path apps/tauri-windows/libs/vortideck-core/Cargo.toml --lib --tests
+
+  desktop-compile:
+    name: Desktop Rust compile
+    runs-on: windows-2022
+    env:
+      CARGO_TARGET_DIR: C:\vdt
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: "apps/tauri-windows/src-tauri -> ${{ env.CARGO_TARGET_DIR }}"
+      - name: Compile the desktop application
+        run: cargo check --locked --manifest-path apps/tauri-windows/src-tauri/Cargo.toml --bin VortiDeck
+      - uses: pnpm/action-setup@v4
+        if: github.event_name == 'workflow_call' || github.event_name == 'workflow_dispatch'
+      - uses: actions/setup-node@v4
+        if: github.event_name == 'workflow_call' || github.event_name == 'workflow_dispatch'
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - name: Install packaged-acceptance dependencies
+        if: github.event_name == 'workflow_call' || github.event_name == 'workflow_dispatch'
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Prepare and generate packaged frontend
+        if: github.event_name == 'workflow_call' || github.event_name == 'workflow_dispatch'
+        run: |
+          pnpm --filter vortideck-desktop run postinstall
+          pnpm --filter vortideck-desktop run generate
+      - name: Build isolated packaged acceptance host
+        if: github.event_name == 'workflow_call' || github.event_name == 'workflow_dispatch'
+        run: pnpm --filter vortideck-desktop exec tauri build --no-bundle --features acceptance-test-hooks --config src-tauri/tauri.acceptance.conf.json
+      - name: Force-kill and restart packaged workflow host
+        if: github.event_name == 'workflow_call' || github.event_name == 'workflow_dispatch'
+        shell: pwsh
+        run: ./scripts/test-packaged-workflow-recovery.ps1 -ExecutablePath "$env:CARGO_TARGET_DIR\release\VortiDeck.exe"
+
+  installer-policy:
+    name: Security, installer, and companion policy
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Tauri CSP and capabilities
+        shell: pwsh
+        run: ./scripts/test-tauri-security-policy.ps1
+      - name: Validate release version alignment
+        shell: pwsh
+        run: ./scripts/test-release-version.ps1
+      - name: Stage the published OBS companion when it is not committed
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if (-not (Test-Path apps/tauri-windows/src-tauri/resources/plugins/vorti-obs-plugin.dll)) {
+            ./scripts/stage-obs-companion.ps1 `
+              -Destination apps/tauri-windows/src-tauri/resources/plugins/vorti-obs-plugin.dll `
+              -ProvenancePath "$env:RUNNER_TEMP/obs-companion-provenance.json" `
+              -EmbeddedManifestDestination apps/tauri-windows/src-tauri/resources/obs-companion/manifest.json
+          }
+      - name: Validate Windows installer and embedded companion policy
+        shell: pwsh
+        run: ./scripts/test-windows-installer.ps1

@@ -1,0 +1,3 @@
+ALTER TABLE installed_package_releases DROP COLUMN last_known_good_marketplace_key_id;
+ALTER TABLE installed_package_releases DROP COLUMN last_known_good_artifact_sha256;
+ALTER TABLE installed_package_releases DROP COLUMN last_known_good_release_id;

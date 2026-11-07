@@ -1,0 +1,11 @@
+{
+  "productName": "VortiDeck Acceptance",
+  "identifier": "com.vortideck.desktop.acceptance",
+  "build": {
+    "beforeBuildCommand": "",
+    "frontendDist": "../dist"
+  },
+  "bundle": {
+    "active": false
+  }
+}

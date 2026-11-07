@@ -1,0 +1,25 @@
+{
+  "name": "vortideck-plugin-sdk-contract",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "vortideck build"
+  },
+  "vortideck": {
+    "id": "contract-test",
+    "name": "SDK Contract Fixture",
+    "version": "1.0.0",
+    "author": "VortiDeck",
+    "description": "Minimal public SDK build/load/invoke fixture",
+    "vortideck_version": ">=0.7.0",
+    "schema_version": "1.0",
+    "permissions": []
+  },
+  "dependencies": {
+    "@vortideck/plugin-sdk": "workspace:*"
+  },
+  "devDependencies": {
+    "@extism/js-pdk": "^1.1.1",
+    "typescript": "^7.0.2"
+  }
+}

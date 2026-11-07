@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": ".",
+    "paths": {
+      "@vortideck/plugin-sdk": ["./src/index.ts"]
+    }
+  },
+  "include": ["src/**/*", "test/minimal-plugin.ts"]
+}

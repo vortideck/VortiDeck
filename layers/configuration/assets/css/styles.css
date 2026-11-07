@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* 
+@font-face {
+  font-family: "Brown";
+  src: url("/fonts/brown-bold.ttf");
+}
+
+@font-face {
+  font-family: "ITIM";
+  src: url("/fonts/Itim-Regular.ttf");
+}
+
+@font-face {
+  font-family: "INTERN";
+  src: url("/fonts/INTERN.ttf");
+}
+
+@font-face {
+  font-family: "ELMESSIRI";
+  src: url("/fonts/elMessiri/ElMessiri-Regular.ttf");
+}
+
+@font-face {
+  font-family: "MONTSERRAT";
+  src: url("/fonts/Montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: "RIGHTEOUS";
+  src: url("/fonts/Righteous/Righteous-Regular.ttf");
+}
+
+@font-face {
+  font-family: "FLAMABOOK";
+  src: url("/fonts/FlamaBook-Regular.otf");
+}
+
+@supports (font-variation-settings: normal) {
+  @font-face {
+    font-family: "PublicSans";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/PublicSans/PublicSans-VariableFont_wght.ttf") format("ttf");
+    font-named-instance: "Regular";
+  }
+
+  @font-face {
+    font-family: "PublicSans";
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/PublicSans/PublicSans-Italic-VariableFont_wght.ttf")
+      format("ttf");
+    font-named-instance: "Italic";
+  }
+
+  @font-face {
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/Mulish/Mulish-VariableFont_wght.ttf") format("ttf");
+    font-named-instance: "Regular";
+  }
+
+  @font-face {
+    font-family: "Mulish";
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/Mulish/Mulish-Italic-VariableFont_wght.ttf") format("ttf");
+    font-named-instance: "Italic";
+  }
+} */
+
+@layer components {
+  .col {
+    @apply flex flex-col;
+  }
+
+  .row {
+    @apply flex flex-row;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+/* 
+@font-face {
+  font-family: "ROBOTO";
+  src: url("/fonts/Roboto-Bold.ttf");
+}
+
+@font-face {
+  font-family: "ROBOTOLIGHT";
+  src: url("/fonts/Roboto-Light.ttf");
+} */
+
+html.noscroll {
+  position: fixed;
+  overflow-y: scroll;
+  width: 100%;
+}

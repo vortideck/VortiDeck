@@ -1,0 +1,35 @@
+name: Installer Validation
+
+on:
+  pull_request:
+    paths:
+      - "apps/tauri-windows/src-tauri/tauri*.json"
+      - "apps/tauri-windows/src-tauri/windows/**"
+      - "apps/tauri-windows/src-tauri/resources/**"
+      - "apps/tauri-windows/src-tauri/scripts/**"
+      - "scripts/test-windows-*.ps1"
+      - "scripts/test-tauri-security-policy.ps1"
+      - "scripts/test-packaged-workflow-recovery.ps1"
+      - "scripts/stage-obs-companion.ps1"
+      - "scripts/build-flatpak.sh"
+      - "packaging/linux/**"
+      - ".github/workflows/desktop-release.yml"
+      - ".github/workflows/desktop-cross-platform-release.yml"
+      - ".github/workflows/installer-validation.yml"
+      - ".github/workflows/release-quality.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  policy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Tauri CSP and capabilities
+        shell: pwsh
+        run: ./scripts/test-tauri-security-policy.ps1
+      - name: Validate Windows installer policy
+        shell: pwsh
+        run: ./scripts/test-windows-installer.ps1

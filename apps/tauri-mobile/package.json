@@ -1,0 +1,38 @@
+{
+  "name": "vortideck-mobile",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "nuxt": "nuxt dev",
+    "dev": "nuxt dev --host 0.0.0.0",
+    "generate": "nuxt generate",
+    "lint": "eslint --config ../../eslint.config.mjs . ../../layers/base ../../layers/configuration ../../layers/mobile",
+    "typecheck": "nuxt typecheck",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "tauri": "tauri",
+    "tauri:dev": "dotenv -e .env -e ../../.env -- tauri --apk"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "2.12.4",
+    "@tauri-apps/cli": "2.12.4",
+    "@tauri-apps/plugin-barcode-scanner": "~2.5.3",
+    "@tauri-apps/plugin-shell": "2.6.0",
+    "nuxt": "4.5.2",
+    "rolldown": "1.2.6",
+    "vue": "^3.5.42",
+    "vue-router": "^5.3.0"
+  },
+  "optionalDependencies": {
+    "@tauri-apps/cli-linux-x64-gnu": "2.12.4"
+  },
+  "devDependencies": {
+    "@iconify-json/fxemoji": "^1.2.1",
+    "@iconify-json/icon-park": "^1.2.2",
+    "@iconify-json/iconoir": "^1.2.7",
+    "@iconify-json/marketeq": "^1.2.2",
+    "@iconify-json/skill-icons": "^1.2.0",
+    "rollup-plugin-visualizer": "^7.0.1"
+  }
+}

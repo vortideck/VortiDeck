@@ -1,0 +1,39 @@
+{
+  "identifier": "desktop-capability",
+  "platforms": [
+    "macOS",
+    "windows",
+    "linux"
+  ],
+  "windows": [
+    "main",
+    "mobile_simulator",
+    "logs",
+    "splashscreen",
+    "flow_editor",
+    "window_*",
+    "assistant",
+    "assistant-*",
+    "streaming"
+  ],
+  "permissions": [
+    "updater:default",
+    "updater:allow-check",
+    "updater:allow-download-and-install",
+    {
+      "identifier": "http:default",
+      "allow": [
+        { "url": "https://*.vortideck.com"},
+        { "url": "http://localhost:*" },
+        { "url": "http://127.0.0.1:*" },
+        { "url": "https://127.0.0.1:*" },
+        { "url": "https://api.openai.com/*" },
+        { "url": "https://api.anthropic.com/*" },
+        { "url": "https://openrouter.ai/*" },
+        { "url": "https://*.openai.azure.com/*" },
+        { "url": "https://*.azure.com/*" }
+      ],
+      "deny": [{ "url": "https://private.vortideck.com" }]
+    }
+  ]
+}

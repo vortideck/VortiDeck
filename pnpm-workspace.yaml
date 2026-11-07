@@ -1,0 +1,8 @@
+# update the pnpm-workspace.yaml
+
+packages:
+  - "layers/*"
+  - "apps/*"
+  - "packages/*"
+  - "examples/plugin-with-sdk"
+  - "examples/plugin-sdk-contract"

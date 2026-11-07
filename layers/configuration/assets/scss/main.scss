@@ -1,0 +1,602 @@
+:root,
+.theme-default-light,
+.theme-github-light,
+.theme-glassy-light {
+  --background: 210 29% 97%;
+  /* #f6f8fa - GitHub Light Primer Canvas */
+  --background2: 0 0% 100%;
+  /* #ffffff - GitHub Light Pure Surface */
+  --background3: 210 20% 93%;
+  /* #eaeef2 - GitHub Light Input/Row Surface */
+  --button: 213 93% 45%;
+  /* #0969da - GitHub Light Primary Blue */
+  --buttonHover: 215 88% 39%;
+  /* #0854c1 */
+  --primary: 213 93% 45%;
+  /* #0969da */
+  --secondary: 271 91% 65%;
+  /* #a855f7 */
+  --hint: 213 18% 84%;
+  /* #d0d7de */
+  --text: 213 13% 14%;
+  /* #1f2328 - GitHub Light Primary Text */
+  --text2: 213 8% 43%;
+  /* #656d76 - GitHub Light Muted Secondary */
+  --text3: 213 10% 60%;
+  /* #8c959f - GitHub Light De-emphasized */
+  --border: 213 18% 84%;
+  /* #d0d7de - GitHub Light Standard Border */
+  --border2: 213 14% 75%;
+  /* #bcc3ce - GitHub Light Card Border */
+  --hover: 210 29% 95%;
+  /* #eff2f5 */
+  --active: 0 0% 0%;
+  --invert: invert(0);
+
+  /* Warning/Banner colors */
+  --warning-bg: 45 93% 47%;
+  --warning-bg-subtle: 48 96% 89%;
+  --warning-text: 31 92% 30%;
+  --warning-text-subtle: 45 86% 40%;
+  --warning-border: 43 96% 56%;
+  --warning-icon: 38 92% 50%;
+
+  --connected: 142 61% 35%;
+  --connectedBg: 142 84% 93%;
+  --disconnected: 0 73% 42%;
+  --disconnectedBg: 0 84% 94%;
+  --connecting: 25 98% 54%;
+  --connectingBg: 25 85% 96%;
+  --paired: 214 100% 50%;
+  --pairedBg: 214 57% 93%;
+  --editor-accent: 213 93% 45%;
+  /* #0969da */
+  --editor-accent-2: 215 88% 39%;
+  /* #0854c1 */
+  --editor-surface: 0 0% 100%;
+  --editor-surface-soft: 210 29% 97%;
+  --editor-surface-muted: 210 20% 93%;
+
+  --success: 137 55% 36%;
+  /* #2da44e */
+  --successBg: 138 76% 94%;
+  --error: 358 75% 59%;
+  /* #cf222e */
+  --errorBg: 358 93% 94%;
+  --info: 213 93% 45%;
+  --infoBg: 214 95% 93%;
+}
+
+.dark,
+.theme-default-dark,
+.theme-github-dark,
+.theme-glassy-dark {
+  --background: 216 28% 7%;
+  /* #0d1117 - GitHub Dark Primer Canvas */
+  --background2: 215 21% 11%;
+  /* #161b22 - GitHub Dark Elevated Card Surface */
+  --background3: 215 15% 15%;
+  /* #21262d - GitHub Dark Inputs, Sub-panels, Chips */
+  --button: 215 93% 58%;
+  /* #2f81f7 - GitHub Dark Electric Accent */
+  --buttonHover: 217 84% 52%;
+  /* #1f6feb */
+  --primary: 215 93% 58%;
+  /* #2f81f7 */
+  --secondary: 271 91% 65%;
+  /* #a855f7 */
+  --hint: 212 12% 21%;
+  /* #30363d */
+  --text: 213 100% 96%;
+  /* #f0f6fc - GitHub Crisp High-Contrast Text */
+  --text2: 213 9% 58%;
+  /* #8b949e - GitHub Muted Secondary Text */
+  --text3: 212 8% 42%;
+  /* #6e7681 - GitHub Dim Metadata/Placeholder */
+  --border: 212 12% 21%;
+  /* #30363d - GitHub Dark Standard Border */
+  --border2: 212 12% 27%;
+  /* #3d444d - GitHub Dark Visible Border */
+  --hover: 215 21% 14%;
+  /* #1b212a - GitHub Dark Hover Surface */
+  --active: 215 15% 20%;
+  /* #292e36 */
+  --invert: invert(1);
+
+  /* Warning/Banner colors */
+  --warning-bg: 40 89% 45%;
+  --warning-bg-subtle: 40 96% 18%;
+  --warning-text: 40 96% 89%;
+  --warning-text-subtle: 40 96% 79%;
+  --warning-border: 40 89% 45%;
+  --warning-icon: 40 96% 56%;
+
+  --connected: 137 55% 48%;
+  --connectedBg: 137 60% 12%;
+  --disconnected: 358 75% 59%;
+  --disconnectedBg: 358 60% 14%;
+  --connecting: 25 98% 54%;
+  --connectingBg: 25 85% 15%;
+  --paired: 215 93% 58%;
+  --pairedBg: 215 60% 15%;
+  --editor-accent: 215 93% 58%;
+  /* #2f81f7 - Unified GitHub Blue */
+  --editor-accent-2: 217 84% 52%;
+  /* #1f6feb */
+  --editor-surface: 215 21% 11%;
+  --editor-surface-soft: 216 28% 7%;
+  --editor-surface-muted: 215 15% 15%;
+
+  --success: 137 55% 48%;
+  /* #3fb950 */
+  --successBg: 137 60% 12%;
+  --error: 358 75% 59%;
+  /* #f85149 */
+  --errorBg: 358 62% 14%;
+  --info: 215 93% 58%;
+  --infoBg: 215 91% 14%;
+}
+
+.theme-github-dimmed {
+  --background: 220 20% 14%;
+  /* #22272e - GitHub Dimmed Canvas */
+  --background2: 222 18% 18%;
+  /* #2d333b - GitHub Dimmed Surface/Card */
+  --background3: 223 14% 24%;
+  /* #373e47 - GitHub Dimmed Chip/Input */
+  --button: 212 85% 56%;
+  /* #3884f5 - High contrast GitHub Dimmed Blue */
+  --buttonHover: 212 85% 48%;
+  /* #2575ea */
+  --primary: 212 85% 56%;
+  /* #3884f5 */
+  --secondary: 271 91% 65%;
+  /* #a855f7 */
+  --hint: 222 13% 28%;
+  /* #444c56 */
+  --text: 215 28% 90%;
+  /* #adbac7 - GitHub Dimmed Text */
+  --text2: 216 14% 63%;
+  /* #768390 - GitHub Dimmed Muted */
+  --text3: 218 11% 47%;
+  /* #545d68 */
+  --border: 222 13% 28%;
+  /* #444c56 - GitHub Dimmed Border */
+  --border2: 222 13% 36%;
+  /* #545d68 - GitHub Dimmed Active Border */
+  --hover: 222 18% 22%;
+  /* #313842 */
+  --active: 223 14% 27%;
+  /* #3f4752 */
+  --invert: invert(1);
+
+  /* Warning/Banner colors */
+  --warning-bg: 40 89% 45%;
+  --warning-bg-subtle: 40 96% 18%;
+  --warning-text: 40 96% 89%;
+  --warning-text-subtle: 40 96% 79%;
+  --warning-border: 40 89% 45%;
+  --warning-icon: 40 96% 56%;
+
+  --connected: 137 55% 48%;
+  --connectedBg: 137 60% 12%;
+  --disconnected: 358 75% 59%;
+  --disconnectedBg: 358 60% 14%;
+  --connecting: 25 98% 54%;
+  --connectingBg: 25 85% 15%;
+  --paired: 212 92% 64%;
+  --pairedBg: 212 60% 15%;
+  --editor-accent: 212 92% 64%;
+  --editor-accent-2: 212 92% 58%;
+  --editor-surface: 222 18% 18%;
+  --editor-surface-soft: 220 20% 14%;
+  --editor-surface-muted: 223 14% 24%;
+
+  --success: 137 55% 48%;
+  --successBg: 137 60% 12%;
+  --error: 358 75% 59%;
+  --errorBg: 358 62% 14%;
+  --info: 212 92% 64%;
+  --infoBg: 212 91% 14%;
+}
+
+/* ==========================================================================
+   VORTIDECK (Electric Blue & GitHub Primer Chrome)
+   ========================================================================== */
+.theme-vortideck-light {
+  --background: 210 29% 97%;
+  /* #f6f8fa */
+  --background2: 0 0% 100%;
+  /* #ffffff */
+  --background3: 210 20% 93%;
+  /* #eaeef2 */
+  --button: 217 91% 54%;
+  /* #2563eb */
+  --buttonHover: 217 91% 46%;
+  --primary: 217 91% 54%;
+  --secondary: 271 91% 65%;
+  --hint: 213 18% 84%;
+  --text: 213 13% 14%;
+  --text2: 213 8% 43%;
+  --text3: 213 10% 60%;
+  --border: 213 18% 84%;
+  /* #d0d7de */
+  --border2: 213 14% 75%;
+  --hover: 210 29% 95%;
+  --active: 0 0% 0%;
+  --invert: invert(0);
+  --editor-accent: 217 91% 54%;
+  --editor-accent-2: 217 91% 46%;
+  --editor-surface: 0 0% 100%;
+  --editor-surface-soft: 210 29% 97%;
+  --editor-surface-muted: 210 20% 93%;
+}
+
+.theme-vortideck-dark {
+  --background: 216 28% 7%;
+  /* #0d1117 - Unified with Titlebar & Chrome */
+  --background2: 215 21% 11%;
+  /* #161b22 */
+  --background3: 215 15% 15%;
+  /* #21262d */
+  --button: 217 91% 60%;
+  /* #3b82f6 - Electric Blue */
+  --buttonHover: 217 91% 52%;
+  --primary: 217 91% 60%;
+  --secondary: 271 91% 65%;
+  --hint: 212 12% 21%;
+  --text: 213 100% 96%;
+  /* #f0f6fc */
+  --text2: 213 9% 58%;
+  --text3: 212 8% 42%;
+  --border: 212 12% 21%;
+  /* #30363d */
+  --border2: 212 12% 27%;
+  --hover: 215 21% 14%;
+  --active: 215 15% 20%;
+  --invert: invert(1);
+  --editor-accent: 217 91% 60%;
+  --editor-accent-2: 217 91% 52%;
+  --editor-surface: 215 21% 11%;
+  --editor-surface-soft: 216 28% 7%;
+  --editor-surface-muted: 215 15% 15%;
+}
+
+/* ==========================================================================
+   CATPPUCCIN (Latte & Mocha)
+   ========================================================================== */
+.theme-catppuccin-light {
+  --background: 220 23% 95%; /* Latte Base */
+  --background2: 0 0% 100%; /* Pure Surface */
+  --background3: 223 16% 88%; /* Mantle */
+  --button: 267 58% 60%; /* Mauve */
+  --buttonHover: 267 58% 52%;
+  --primary: 267 58% 60%;
+  --secondary: 198 76% 40%; /* Sapphire */
+  --hint: 223 16% 80%;
+  --text: 234 16% 35%; /* Text */
+  --text2: 233 13% 45%; /* Subtext */
+  --text3: 232 10% 55%;
+  --border: 223 16% 80%; /* Surface2 */
+  --border2: 223 14% 72%;
+  --hover: 220 23% 91%;
+  --active: 223 16% 85%;
+  --invert: invert(0);
+  --editor-accent: 267 58% 60%;
+  --editor-accent-2: 267 58% 52%;
+  --editor-surface: 0 0% 100%;
+  --editor-surface-soft: 220 23% 95%;
+  --editor-surface-muted: 223 16% 88%;
+}
+
+.theme-catppuccin-dark {
+  --background: 240 21% 12%; /* Mocha Base #1e1e2e */
+  --background2: 240 21% 16%; /* Surface0 #24273a */
+  --background3: 237 16% 23%; /* Surface2 #363a4f */
+  --button: 267 60% 60%; /* Rich Mauve / Lavender - High contrast */
+  --buttonHover: 267 60% 52%;
+  --primary: 267 60% 60%;
+  --secondary: 217 80% 68%; /* Sapphire #6c9bf0 */
+  --hint: 237 16% 26%;
+  --text: 227 70% 87%; /* Text #cdd6f4 */
+  --text2: 228 39% 70%; /* Subtext0 #a6adc8 */
+  --text3: 231 23% 53%; /* Overlay0 #6c7086 */
+  --border: 237 16% 26%; /* Surface2 #363a4f */
+  --border2: 237 16% 34%;
+  --hover: 240 21% 19%;
+  --active: 237 16% 26%;
+  --invert: invert(1);
+  --editor-accent: 267 60% 60%;
+  --editor-accent-2: 267 60% 52%;
+  --editor-surface: 240 21% 16%;
+  --editor-surface-soft: 240 21% 12%;
+  --editor-surface-muted: 237 16% 23%;
+}
+
+/* ==========================================================================
+   EVERFOREST (Comfortable Green & Warm Earth)
+   ========================================================================== */
+.theme-everforest-light {
+  --background: 44 33% 94%; /* #f3efda */
+  --background2: 0 0% 100%;
+  --background3: 48 18% 88%; /* #e6e2cc */
+  --button: 86 38% 46%; /* #8da101 */
+  --buttonHover: 86 38% 38%;
+  --primary: 86 38% 46%;
+  --secondary: 175 28% 42%; /* #3a94c5 */
+  --hint: 48 18% 80%;
+  --text: 180 6% 32%; /* #5c6a72 */
+  --text2: 180 5% 46%;
+  --text3: 180 4% 60%;
+  --border: 48 18% 80%; /* #dfdbbf */
+  --border2: 48 16% 70%;
+  --hover: 44 33% 89%;
+  --active: 48 18% 84%;
+  --invert: invert(0);
+  --editor-accent: 86 38% 46%;
+  --editor-accent-2: 86 38% 38%;
+  --editor-surface: 0 0% 100%;
+  --editor-surface-soft: 44 33% 94%;
+  --editor-surface-muted: 48 18% 88%;
+}
+
+.theme-everforest-dark {
+  --background: 160 14% 17%; /* #27342b */
+  --background2: 154 13% 21%; /* #343f36 */
+  --background3: 150 10% 28%; /* #3e483e */
+  --button: 86 38% 48%; /* Rich Forest Green - High contrast */
+  --buttonHover: 86 38% 40%;
+  --primary: 86 38% 48%;
+  --secondary: 175 32% 65%; /* #7fbbb3 */
+  --hint: 150 10% 28%;
+  --text: 48 24% 86%; /* #d3c6aa */
+  --text2: 48 12% 65%; /* #9da9a0 */
+  --text3: 150 8% 48%; /* #7a8478 */
+  --border: 150 10% 28%; /* #3e483e */
+  --border2: 150 10% 36%;
+  --hover: 154 13% 25%;
+  --active: 150 10% 32%;
+  --invert: invert(1);
+  --editor-accent: 86 38% 48%;
+  --editor-accent-2: 86 38% 40%;
+  --editor-surface: 154 13% 21%;
+  --editor-surface-soft: 160 14% 17%;
+  --editor-surface-muted: 150 10% 28%;
+}
+
+.theme-mobile-light {
+  --background: 0 0% 98%;
+  /* #fafafa */
+  --background2: 0 0% 96%;
+  /* #f5f5f5 */
+  --background3: 0 0% 100%;
+  /* #ffffff - card surfaces */
+  --button: 173 80% 40%;
+  /* #14b8a6 - teal-500 */
+  --buttonHover: 172 66% 50%;
+  /* #2dd4bf - teal-400 */
+  --primary: 173 80% 40%;
+  /* #14b8a6 - teal-500 */
+  --secondary: 172 66% 50%;
+  /* #2dd4bf - teal-400 */
+  --hint: 240 5% 92%;
+  /* #ececef - light gray */
+  --text: 240 6% 10%;
+  /* #18181b - gray-900 */
+  --text2: 240 4% 46%;
+  /* #71717a - gray-500 */
+  --text3: 240 5% 65%;
+  /* #a1a1aa - gray-400 */
+  --border: 240 6% 90%;
+  /* #e4e4e7 - gray-200 */
+  --border2: 240 5% 84%;
+  /* #d4d4d8 - gray-300 */
+  --hover: 240 5% 96%;
+  /* #f4f4f5 */
+  --active: 240 5% 92%;
+  /* #ececef */
+  --invert: invert(0);
+
+  --connected: 142 71% 45%;
+  --connectedBg: 142 76% 94%;
+  --disconnected: 0 84% 60%;
+  --disconnectedBg: 0 93% 94%;
+  --connecting: 38 92% 50%;
+  --connectingBg: 48 96% 93%;
+  --paired: 173 80% 40%;
+  --pairedBg: 173 80% 94%;
+
+  --success: 142 71% 45%;
+  --successBg: 142 76% 94%;
+  --error: 0 84% 60%;
+  --errorBg: 0 93% 94%;
+  --info: 173 80% 40%;
+  --infoBg: 173 80% 94%;
+
+  --warning-bg: 45 93% 47%;
+  --warning-bg-subtle: 48 96% 93%;
+  --warning-text: 43 96% 20%;
+  --warning-text-subtle: 43 96% 30%;
+  --warning-border: 45 93% 80%;
+  --warning-icon: 43 96% 56%;
+}
+
+.theme-mobile-dark {
+  --background: 240 6% 3%;
+  /* #09090b - gray-950 */
+  --background2: 240 4% 6%;
+  /* #0f0f12 - slightly lighter */
+  --background3: 240 4% 10%;
+  /* #18181b - card surfaces (gray-900) */
+  --button: 173 80% 40%;
+  /* #14b8a6 - teal-500 */
+  --buttonHover: 172 66% 50%;
+  /* #2dd4bf - teal-400 */
+  --primary: 172 66% 50%;
+  /* #2dd4bf - teal-400 */
+  --secondary: 173 80% 40%;
+  /* #14b8a6 - teal-500 */
+  --hint: 240 4% 16%;
+  /* #27272a - gray-800 */
+  --text: 0 0% 100%;
+  /* #ffffff */
+  --text2: 240 5% 65%;
+  /* #a1a1aa - gray-400 */
+  --text3: 240 4% 46%;
+  /* #71717a - gray-500 */
+  --border: 240 4% 16%;
+  /* #27272a - gray-800 */
+  --border2: 240 4% 22%;
+  /* #3f3f46 - gray-700 */
+  --hover: 240 4% 10%;
+  /* #18181b */
+  --active: 240 4% 13%;
+  /* #1e1e22 */
+  --invert: invert(1);
+
+  --connected: 142 71% 45%;
+  /* #22c55e - green-500 */
+  --connectedBg: 142 76% 12%;
+  /* dark green bg */
+  --disconnected: 0 84% 60%;
+  /* #ef4444 - red-500 */
+  --disconnectedBg: 0 62% 14%;
+  /* dark red bg */
+  --connecting: 38 92% 50%;
+  /* #eab308 - yellow-500 */
+  --connectingBg: 38 92% 12%;
+  /* dark yellow bg */
+  --paired: 172 66% 50%;
+  /* teal-400 */
+  --pairedBg: 173 80% 10%;
+  /* dark teal bg */
+
+  --success: 142 71% 45%;
+  --successBg: 142 76% 12%;
+  --error: 0 84% 60%;
+  --errorBg: 0 62% 14%;
+  --info: 172 66% 50%;
+  /* teal instead of blue for mobile */
+  --infoBg: 173 80% 10%;
+
+  --warning-bg: 45 93% 47%;
+  --warning-bg-subtle: 48 96% 53%;
+  --warning-text: 48 96% 89%;
+  --warning-text-subtle: 43 96% 79%;
+  --warning-border: 45 93% 47%;
+  --warning-icon: 43 96% 56%;
+}
+
+/* Disable all transitions during theme switching for instant theme changes */
+.disable-transitions,
+.disable-transitions * {
+  transition: none !important;
+  animation: none !important;
+}
+
+.between-lines {
+
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+
+
+.between-lines span {
+  background: var(--background);
+  padding: 0 10px;
+
+}
+
+
+.scrollbar-visible {
+  ::-webkit-scrollbar {
+    display: block;
+    width: 8px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border2));
+    border-radius: 8px;
+    border: 2px solid transparent;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--text3) / 0.6);
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+  width: 8px;
+  background-color: transparent;
+}
+
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--border2));
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--text3) / 0.6);
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-button:single-button,
+::-webkit-scrollbar-button:vertical:decrement,
+::-webkit-scrollbar-button:vertical:increment,
+::-webkit-scrollbar-button:horizontal:decrement,
+::-webkit-scrollbar-button:horizontal:increment {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Hide scrollbar for html and body */
+html,
+body {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+
+.status.reconnecting {
+  animation: pulse 1.5s infinite ease-in-out;
+  /* Apply the pulse animation */
+}
+
+/* App-wide UI scale custom property */
+:root {
+  --vortideck-ui-scale: 1;
+}

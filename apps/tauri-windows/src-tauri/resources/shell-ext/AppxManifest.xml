@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  IgnorableNamespaces="uap uap3 uap10 rescap desktop4 desktop5 com">
+
+  <Identity
+    Name="VortiDeck.ShellExtension"
+    Publisher="CN=VortiDeck"
+    Version="1.0.0.0"
+    ProcessorArchitecture="x64" />
+
+  <Properties>
+    <DisplayName>VortiDeck Shell Extension</DisplayName>
+    <PublisherDisplayName>VortiDeck</PublisherDisplayName>
+    <Description>VortiDeck Windows Explorer context menu integration</Description>
+    <Logo>icon.png</Logo>
+    <uap10:AllowExternalContent>true</uap10:AllowExternalContent>
+  </Properties>
+
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.19041.0" MaxVersionTested="10.0.26200.0" />
+  </Dependencies>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+
+  <Applications>
+    <Application Id="VortiDeck" Executable="VortiDeck.exe"
+      uap10:TrustLevel="mediumIL"
+      uap10:RuntimeBehavior="win32App">
+      <uap:VisualElements
+        DisplayName="VortiDeck"
+        Description="VortiDeck - Your Ultimate Deck Controller"
+        BackgroundColor="transparent"
+        Square150x150Logo="icon.png"
+        Square44x44Logo="icon.png"
+        AppListEntry="none" />
+      <Extensions>
+        <!-- COM Server registration: tells Windows where the shell extension DLL is -->
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:SurrogateServer DisplayName="VortiDeck Context Menu Handler">
+              <com:Class Id="D5EF25C7-8556-4838-97D9-53E265083794" Path="vortideck-shell-ext.dll" ThreadingModel="STA"/>
+              <!-- Root-level slots (0-7) for user-created top-level context menu items -->
+              <com:Class Id="D5EF25D0-8556-4838-97D9-53E265083794" Path="vortideck-shell-ext.dll" ThreadingModel="STA"/>
+              <com:Class Id="D5EF25D1-8556-4838-97D9-53E265083794" Path="vortideck-shell-ext.dll" ThreadingModel="STA"/>
+              <com:Class Id="D5EF25D2-8556-4838-97D9-53E265083794" Path="vortideck-shell-ext.dll" ThreadingModel="STA"/>
+              <com:Class Id="D5EF25D3-8556-4838-97D9-53E265083794" Path="vortideck-shell-ext.dll" ThreadingModel="STA"/>
+              <com:Class Id="D5EF25D4-8556-4838-97D9-53E265083794" Path="vortideck-shell-ext.dll" ThreadingModel="STA"/>
+              <com:Class Id="D5EF25D5-8556-4838-97D9-53E265083794" Path="vortideck-shell-ext.dll" ThreadingModel="STA"/>
+              <com:Class Id="D5EF25D6-8556-4838-97D9-53E265083794" Path="vortideck-shell-ext.dll" ThreadingModel="STA"/>
+              <com:Class Id="D5EF25D7-8556-4838-97D9-53E265083794" Path="vortideck-shell-ext.dll" ThreadingModel="STA"/>
+            </com:SurrogateServer>
+          </com:ComServer>
+        </com:Extension>
+        <!-- File Explorer Context Menu: tells Explorer which verbs/CLSIDs to use -->
+        <!-- NOTE: Slot verbs (VDSlot0-7) are only added here when root-level items are configured.
+             Having multiple verbs causes Explorer to auto-group them under a parent flyout,
+             creating unwanted double nesting. The com:Class entries above are kept so the
+             COM server is ready — we just don't register them as verbs until needed. -->
+        <desktop4:Extension Category="windows.fileExplorerContextMenus">
+          <desktop4:FileExplorerContextMenus>
+            <desktop5:ItemType Type="*">
+              <desktop5:Verb Id="VortiDeckMenu" Clsid="D5EF25C7-8556-4838-97D9-53E265083794" />
+            </desktop5:ItemType>
+            <desktop5:ItemType Type="Directory">
+              <desktop5:Verb Id="VortiDeckMenuDir" Clsid="D5EF25C7-8556-4838-97D9-53E265083794" />
+            </desktop5:ItemType>
+            <desktop5:ItemType Type="Directory\Background">
+              <desktop5:Verb Id="VortiDeckMenuBg" Clsid="D5EF25C7-8556-4838-97D9-53E265083794" />
+            </desktop5:ItemType>
+          </desktop4:FileExplorerContextMenus>
+        </desktop4:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>

@@ -1,0 +1,29 @@
+{
+  "extends": "../base/tsconfig.json",
+  "include": [
+    "env.d.ts",
+    ".nuxt/nuxt.d.ts",
+    "**/*",
+    "*.vue",
+    "*.ts",
+    "*.tsx",
+    "*.js",
+    "*.jsx",
+    "*.json",
+    "*.md",
+    "*.yml",
+    "../desktop/plugins/GetTauriStateOnRefresh.ts",
+    "../desktop/plugins/GetTauriStateOnRefresh.ts",
+    "../base/stores/Mobile.ts",
+    "../base/stores/Mobile.ts"
+, "../base/layouts/deck.vue", "../base/plugins/socket.io.ts", "../base/plugins/socket.io.ts"  ],
+  "vueCompilerOptions": {
+    "plugins": ["volar-service-pug", "@vue/language-plugin-pug"]
+  },
+  "types": ["@tauri-apps/plugin-haptics"],
+  "compilerOptions": {
+    "esModuleInterop": true
+  },
+  "typeRoots": ["./node_modules/@types", "./src"],
+  "exclude": ["node_modules"]
+}

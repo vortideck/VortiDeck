@@ -1,0 +1,54 @@
+{
+  // https://v3.nuxtjs.org/concepts/typescript
+  // "extends": "./.nuxt/tsconfig.json",
+
+  "include": [
+    "env.d.ts",
+    ".nuxt/nuxt.d.ts",
+    "**/*",
+    "*.vue",
+    "*.ts",
+    "*.tsx",
+    "*.js",
+    "*.jsx",
+    "*.json",
+    "*.md",
+    "*.yml", "../../apps/web-app/i18n.config.ts",
+  ],
+
+  "vueCompilerOptions": {
+    "plugins": ["volar-service-pug", "@vue/language-plugin-pug"]
+  },
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "allowJs": true,
+    "strict": true,
+    "jsx": "preserve",
+    "target": "ESNext",
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "noEmit": true,
+    "paths": {
+      "#imports": ["./.nuxt/types/imports"]
+    },
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "types": [
+      "node",
+      "@nuxt/types",
+      "./types/vue-i18n.d.ts",
+      "unplugin-icons/types/vue",
+      "pinia",
+      "@vueuse/nuxt",
+      "@pinia/nuxt",
+      "@nuxt/image",
+      "@modyfi/vite-plugin-yaml/modules",
+      "@nuxtjs/i18n"
+
+      // "vue-select"
+    ]
+  },
+  "typeRoots": ["./node_modules/@types", "./src"],
+  "exclude": ["node_modules"]
+}

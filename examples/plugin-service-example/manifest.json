@@ -1,0 +1,24 @@
+{
+  "id": "example-service-plugin",
+  "name": "Example Service Plugin",
+  "version": "1.0.0",
+  "author": "VortiDeck Team",
+  "description": "Example service plugin demonstrating Node.js integration",
+  "vortideck_version": ">=0.1.0",
+  "schema_version": "1.0",
+  "runtime": "service",
+  "entry": {
+    "service": {
+      "command": "node",
+      "args": ["index.js"],
+      "cwd": ".",
+      "env": {}
+    }
+  },
+  "permissions": [
+    "network",
+    "filesystem",
+    "executecommands"
+  ],
+  "web_extensions": false
+}

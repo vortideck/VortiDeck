@@ -1,0 +1,21 @@
+{
+  "name": "demo-plugin",
+  "version": "1.0.0",
+  "description": "Example plugin using auto-generated PDK",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "npx tsc --noEmit && node esbuild.js && node build-wasm.js",
+    "format": "npx prettier --write \"src/**/*.{ts,tsx}\" --plugin=prettier-plugin-organize-imports"
+  },
+  "keywords": [],
+  "author": "",
+  "private": true,
+  "license": "MIT",
+  "devDependencies": {
+    "@extism/js-pdk": "^1.1.1",
+    "esbuild": "^0.25.0",
+    "typescript": "^7.0.2",
+    "prettier": "^3.3.2",
+    "prettier-plugin-organize-imports": "^4.1.0"
+  }
+}

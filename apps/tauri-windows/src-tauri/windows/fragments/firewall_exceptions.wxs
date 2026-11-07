@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:fire="http://schemas.microsoft.com/wix/FirewallExtension">
+  <Fragment>
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="FirewallExceptions" Guid="de95bf40-7d9c-4ee6-8c47-1a06f3b7ebe3">
+        <!-- Dynamic local services require a program rule rather than fixed ports. -->
+        <fire:FirewallException Id="VortiDeckPrivateLan"
+                                Program="[#VortiDeck.exe]"
+                                Name="VortiDeck private network access"
+                                Description="Allows authenticated VortiDeck devices and OBS on the local private network."
+                                Profile="private"
+                                Scope="localSubnet"
+                                IgnoreFailure="no" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

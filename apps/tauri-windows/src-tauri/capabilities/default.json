@@ -1,0 +1,96 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "enables the default permissions",
+  "windows": ["main", "mobile_simulator", "logs", "streaming", "splashscreen", "flow_editor", "window_*", "assistant", "assistant-*"],
+  "permissions": [
+    "core:default",
+    "core:window:default",
+    "core:window:allow-start-dragging",
+    "core:window:allow-close",
+    "core:window:allow-minimize",
+    "core:window:allow-toggle-maximize",
+    "core:window:allow-internal-toggle-maximize",
+    "store:default",
+    "core:window:allow-show",
+    "core:window:allow-set-size",
+    "websocket:default",
+    "process:default",
+    "fs:default",
+    "shell:default",
+    "deep-link:default",
+    "core:window:allow-set-focus",
+    "log:default",
+    "os:default",
+    "dialog:default",
+    "dialog:allow-ask",
+    "dialog:allow-open",
+    "dialog:allow-save",
+    "notification:default",
+    "better-posthog:default",
+    "autostart:allow-enable",
+    "autostart:allow-disable",
+    "autostart:allow-is-enabled",
+    "opener:allow-default-urls",
+
+
+    {
+      "identifier": "opener:allow-open-path",
+      "allow": [
+        {
+          "path": "$APPDATA/**"
+        },
+        {
+          "path": "$APPLOCALDATA/**"
+        }
+      ]
+    },
+
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "binaries/node-runner/node-runner",
+          "sidecar": true,
+          "args": true
+        }
+      ]
+    },
+
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "name": "binaries/node-runner/node-runner",
+          "sidecar": true,
+          "args": true
+        }
+      ]
+    },
+
+    
+
+    {
+      "identifier": "fs:allow-exists",
+      "allow": [{ "path": "$APPDATA/**" }, { "path": "$DOCUMENT/VortiDeck/**" }]
+    },
+    {
+      "identifier": "fs:allow-read-file",
+      "allow": [{ "path": "$APPDATA/**" }, { "path": "$APPLOCALDATA/**" }, { "path": "$DOCUMENT/VortiDeck/**" }]
+    },
+    {
+      "identifier": "fs:allow-write-file",
+      "allow": [{ "path": "$APPDATA/**" }, { "path": "$DOCUMENT/VortiDeck/**" }]
+    },
+    {
+      "identifier": "fs:allow-write-text-file",
+      "allow": [{ "path": "$APPDATA/**" }, { "path": "$DOCUMENT/VortiDeck/**" }]
+    },
+    {
+      "identifier": "fs:allow-read-text-file",
+      "allow": [{ "path": "$APPDATA/**" }, { "path": "$APPLOCALDATA/**"}, { "path": "$DOCUMENT/VortiDeck/**" }]
+    }
+    
+    
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "text-processor-plugin",
+  "name": "Text Processor",
+  "version": "1.0.0",
+  "description": "A versatile text processing plugin that can transform text in various ways",
+  "author": "VortiDeck Plugin Developer",
+  "license": "MIT",
+  
+  "vortideck": {
+    "minVersion": "1.0.0"
+  },
+  
+  "main": "dist/text-processor-plugin.wasm",
+  "icon": "assets/icon.png",
+  
+  "category": "TEXT_PROCESSING",
+  "category_display_name": "Text & Document Tools",
+  "type_color": "#4CAF50",
+  "tags": ["text", "processing", "transform", "utility"],
+  "outputs_count": 1,
+  
+  "parameters_schema": {
+    "type": "object",
+    "properties": {
+      "input": {
+        "type": "string",
+        "title": "Input Text",
+        "description": "The text to process",
+        "default": ""
+      },
+      "uppercase": {
+        "type": "boolean",
+        "title": "Convert to Uppercase",
+        "description": "Convert all text to uppercase",
+        "default": false
+      },
+      "lowercase": {
+        "type": "boolean",
+        "title": "Convert to Lowercase", 
+        "description": "Convert all text to lowercase",
+        "default": false
+      },
+      "reverse": {
+        "type": "boolean",
+        "title": "Reverse Text",
+        "description": "Reverse the order of characters",
+        "default": false
+      },
+      "removeSpaces": {
+        "type": "boolean",
+        "title": "Remove Spaces",
+        "description": "Remove all whitespace characters",
+        "default": false
+      },
+      "addPrefix": {
+        "type": "string",
+        "title": "Add Prefix",
+        "description": "Text to add at the beginning",
+        "default": ""
+      },
+      "addSuffix": {
+        "type": "string",
+        "title": "Add Suffix", 
+        "description": "Text to add at the end",
+        "default": ""
+      }
+    }
+  }
+} 

@@ -1,0 +1,3 @@
+# Keep formatting stable while the workspace adopts Rust 2024 semantics.
+# A future dedicated formatting change can opt into style_edition = "2024".
+style_edition = "2021"

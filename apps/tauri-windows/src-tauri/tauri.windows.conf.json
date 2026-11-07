@@ -1,0 +1,29 @@
+{
+  "bundle": {
+    "targets": [
+      "msi"
+    ],
+    "resources": {
+      "resources/shell-ext/vortideck-shell-ext.dll": "resources/shell-ext/vortideck-shell-ext.dll",
+      "resources/shell-ext/icon.png": "resources/shell-ext/icon.png"
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "embedBootstrapper"
+      },
+      "wix": {
+        "upgradeCode": "45733d75-581e-5e1e-bc63-5e9b937adb6b",
+        "fragmentPaths": [
+          "./windows/fragments/firewall_exceptions.wxs",
+          "./windows/fragments/context_menu.wxs"
+        ],
+        "componentRefs": [
+          "FirewallExceptions",
+          "ContextMenuFilesComponent",
+          "ContextMenuFoldersComponent",
+          "ContextMenuDirectoryBackgroundComponent"
+        ]
+      }
+    }
+  }
+}

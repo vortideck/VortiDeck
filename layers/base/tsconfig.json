@@ -1,0 +1,25 @@
+{
+  "extends": "../configuration/tsconfig.json",
+  "include": [
+    "../../server",
+    "../../i18n.config.ts",
+    "../desktop/components/Sidebar.vue",
+    "../mobile/components/Bottom.vue", 
+    "../mobile/pages/deck.vue",
+    "../mobile/layouts/deck.vue",
+    "stores/Deck.ts",
+    "../desktop/plugins/setActiveDeckIfNone.ts",
+    "../configuration/types/vue-i18n.d.ts"
+  ],
+  "compilerOptions": {
+    "module": "ESNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "types": []
+  },
+  "typeRoots": ["./node_modules/@types", "./src"],
+  "exclude": ["node_modules"]
+}

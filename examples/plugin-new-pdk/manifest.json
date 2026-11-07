@@ -1,0 +1,20 @@
+{
+  "id": "demo-plugin",
+  "name": "Demo Plugin",
+  "description": "Example plugin using auto-generated PDK",
+  "version": "1.0.0",
+  "author": "VortiDeck",
+  "category": "text",
+  "type_color": "#4A90E2",
+  "outputs_count": 1,
+  "parameters_schema": {
+    "type": "object",
+    "properties": {
+      "input": {
+        "type": "string",
+        "title": "Input Text",
+        "description": "Text to transform"
+      }
+    }
+  }
+}

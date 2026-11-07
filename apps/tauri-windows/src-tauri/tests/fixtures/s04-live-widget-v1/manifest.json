@@ -1,0 +1,22 @@
+{
+  "id": "s04-live-widget-fixture",
+  "name": "S04 Live Widget Fixture",
+  "version": "0.1.0",
+  "author": "VortiDeck test suite",
+  "description": "Disposable fixture for live overlay permission lifecycle acceptance.",
+  "vortideck_version": ">=0.7.0",
+  "schema_version": "1.0",
+  "permissions": [],
+  "contributions": [
+    {
+      "type": "widget",
+      "capabilities": {
+        "subscribe": ["follow", "viewerCount"],
+        "actions": ["overlay.fixture.ping"],
+        "ui": false,
+        "network": "none"
+      },
+      "content": "<div data-s04-marker=\"v1-sensitive-fixture\">S04 sensitive fixture v1</div>"
+    }
+  ]
+}

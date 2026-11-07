@@ -1,0 +1,69 @@
+{
+  "id": "demo-follower-goal",
+  "name": "Follower Goal",
+  "version": "0.3.0",
+  "author": "VortiDeck",
+  "description": "Responsive follower progress with the latest community member, built as a sandboxed widget example.",
+  "vortideck_version": ">=0.7.0",
+  "schema_version": "1.0",
+  "permissions": [],
+  "contributions": [
+    {
+      "type": "widget",
+      "id": "follower-goal",
+      "name": "Follower Goal",
+      "description": "A responsive follower goal that updates from canonical follow events.",
+      "icon": "heroicons:user-group",
+      "width": 360,
+      "height": 112,
+      "capabilities": {
+        "subscribe": [
+          "follow"
+        ],
+        "actions": [],
+        "ui": false,
+        "network": "none"
+      },
+      "content": "<div id=\"vd-root\"><section class=\"vd-card\"><header><div><div class=\"vd-kicker\">Community goal</div><div class=\"vd-label\">Followers</div></div><div class=\"vd-count\"><strong id=\"vd-count\">0</strong><span> / </span><span id=\"vd-goal\">1,000</span></div></header><div class=\"vd-track\" role=\"progressbar\" aria-label=\"Follower goal\" aria-valuemin=\"0\" aria-valuemax=\"1000\"><div class=\"vd-fill\" id=\"vd-fill\"></div></div><footer><span id=\"vd-percent\">0% complete</span><span class=\"vd-latest\">Latest <strong id=\"vd-latest\">Waiting for a follow</strong></span></footer></section></div><style>*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:transparent}#vd-root{width:100%;height:100%;display:flex;align-items:stretch;padding:4px;font-family:var(--c-font,var(--theme-font-primary,Inter,sans-serif));color:var(--c-text,var(--theme-text,#f8fafc))}.vd-card{width:100%;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:13px 15px;border:1px solid color-mix(in srgb,var(--c-text,var(--theme-text,#fff)) 14%,transparent);border-radius:var(--c-radius,var(--theme-border-radius,14px));background:linear-gradient(120deg,color-mix(in srgb,var(--c-bg,var(--theme-card-bg,#101722)) 94%,transparent),color-mix(in srgb,var(--c-bg,var(--theme-card-bg,#101722)) 82%,var(--c-primary,var(--theme-primary,#3b82f6))));box-shadow:inset 0 1px 0 color-mix(in srgb,var(--c-text,var(--theme-text,#fff)) 6%,transparent)}header,footer{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;min-width:0}.vd-kicker{color:var(--c-primary,var(--theme-primary,#60a5fa));font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.vd-label{margin-top:2px;font-size:13px;font-weight:750}.vd-count{flex:none;font-size:13px;font-variant-numeric:tabular-nums}.vd-count strong{font-size:17px;font-weight:850}.vd-count span{color:var(--c-muted,var(--theme-muted,#94a3b8))}.vd-track{height:8px;margin-top:9px;overflow:hidden;border-radius:999px;background:color-mix(in srgb,var(--c-text,var(--theme-text,#fff)) 10%,transparent)}.vd-fill{width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--c-primary,var(--theme-primary,#3b82f6)),var(--c-secondary,var(--theme-secondary,#8b5cf6)));transition:width .45s cubic-bezier(.16,1,.3,1)}footer{margin-top:6px;color:var(--c-muted,var(--theme-muted,#94a3b8));font-size:9px}.vd-latest{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}.vd-latest strong{color:var(--c-text,var(--theme-text,#f8fafc));font-weight:700}</style><script>(function(){var data={};var config=window.vortideckConfig||{};var count=document.getElementById('vd-count');var goal=document.getElementById('vd-goal');var fill=document.getElementById('vd-fill');var percent=document.getElementById('vd-percent');var latest=document.getElementById('vd-latest');var track=document.querySelector('.vd-track');function number(value,fallback){var parsed=Number(value);return Number.isFinite(parsed)?Math.max(0,parsed):fallback}function render(){document.querySelector('.vd-label').textContent=String(config.title??'Followers');document.documentElement.style.setProperty('--c-primary',config.accent||'#60a5fa');document.querySelector('.vd-latest').style.display=config.showLatest===false?'none':'';var current=number(data.current??data.followerCount??data.followers,0);var target=Math.max(1,number(config.goal,1000));var pct=Math.max(0,Math.min(100,Math.round(current/target*100)));count.textContent=current.toLocaleString();goal.textContent=target.toLocaleString();fill.style.width=pct+'%';percent.textContent=pct+'% complete';latest.textContent=String(data.latestFollower||'Waiting for a follow');track.setAttribute('aria-valuenow',String(current));track.setAttribute('aria-valuemax',String(target))}function merge(next){data=Object.assign({},data,next||{});render()}function username(event){return event.userDisplayName||event.userName||event.username||event.data?.user_display_name||event.data?.user_name||event.data?.user_login}merge(window.vortideckData);window.addEventListener('vortideck-config-update',function(event){config=event.detail||{};render()});window.addEventListener('vortideck-data-update',function(event){merge(event.detail)});window.addEventListener('vortideck-stream-event',function(event){var payload=event.detail||{};if(payload.type!=='follow')return;merge({current:number(data.current??data.followerCount??data.followers,0)+1,latestFollower:username(payload)||data.latestFollower})})})();</script>",
+      "configSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Personalize this goal without resetting the live follower count.",
+        "properties": {
+          "goal": {
+            "type": "integer",
+            "title": "Follower target",
+            "minimum": 1,
+            "maximum": 100000000,
+            "default": 1000
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "maxLength": 80,
+            "default": "Followers"
+          },
+          "accent": {
+            "type": "string",
+            "title": "Accent color",
+            "description": "Hex color, for example #60a5fa.",
+            "pattern": "^#[0-9a-fA-F]{6}$",
+            "default": "#60a5fa"
+          },
+          "showLatest": {
+            "type": "boolean",
+            "title": "Show latest follower",
+            "default": true
+          }
+        },
+        "required": [
+          "goal",
+          "title",
+          "accent",
+          "showLatest"
+        ]
+      }
+    }
+  ]
+}

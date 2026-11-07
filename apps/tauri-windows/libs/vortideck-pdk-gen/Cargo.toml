@@ -1,0 +1,14 @@
+[package]
+name = "vortideck-pdk-gen"
+version = "0.1.0"
+edition = "2024"
+description = "VortiDeck PDK Generator - Multi-language plugin SDK generation"
+authors = ["Alexi Pawelec"]
+license = "MIT"
+
+[lib]
+name = "vortideck_pdk_gen"
+path = "src/lib.rs"
+
+[dependencies]
+# No dependencies needed for code generation

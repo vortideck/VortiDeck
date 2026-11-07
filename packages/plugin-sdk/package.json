@@ -1,0 +1,42 @@
+{
+  "name": "@vortideck/plugin-sdk",
+  "version": "0.1.0",
+  "description": "VortiDeck Plugin SDK - Build plugins with auto-generated type-safe APIs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "vortideck": "./bin/vortideck.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "check:contract": "tsc --project tsconfig.contract.json",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "vortideck",
+    "plugin",
+    "sdk",
+    "wasm",
+    "extism"
+  ],
+  "author": "VortiDeck",
+  "license": "MIT",
+  "peerDependencies": {
+    "@extism/js-pdk": "^1.1.1"
+  },
+  "dependencies": {
+    "esbuild": "^0.25.0"
+  },
+  "devDependencies": {
+    "@extism/js-pdk": "^1.1.1",
+    "typescript": "^7.0.2"
+  },
+  "files": [
+    "dist",
+    "src",
+    "bin",
+    "templates",
+    "README.md",
+    "THIRD_PARTY_LICENSES.md"
+  ]
+}

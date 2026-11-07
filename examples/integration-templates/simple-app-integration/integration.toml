@@ -1,0 +1,87 @@
+[integration]
+name = "My App Integration"
+version = "1.0.0"
+author = "Your Name"
+description = "Integration with My App for VortiDeck"
+app_name = "MyApp"
+supported_platforms = ["windows", "macos", "linux"]
+
+# Integration category (helps with organization and discovery)
+category = "productivity"  # Options: productivity, media, gaming, communication, development, system, other
+
+# Homepage and documentation links
+homepage = "https://github.com/yourname/my-app-integration"
+documentation = "https://github.com/yourname/my-app-integration/blob/main/README.md"
+repository = "https://github.com/yourname/my-app-integration"
+
+[features]
+# Whether this integration requires premium VortiDeck subscription
+premium_required = false
+
+# Usage limits for free users (optional)
+[features.usage_limits]
+actions_per_day = 100
+api_calls_per_hour = 50
+
+[permissions]
+# What permissions this integration needs
+network = true           # Can make network requests
+filesystem = false       # Can read/write files
+system_control = false   # Can control system functions
+window_management = true # Can manage application windows
+
+[requirements]
+# What the integration needs to function
+app_installed = true                    # Requires the target app to be installed
+min_app_version = "1.0.0"             # Minimum version of target app
+additional_software = []                # Any additional software dependencies
+
+# Platform-specific requirements
+[requirements.windows]
+min_os_version = "10"
+registry_access = false
+
+[requirements.macos]
+min_os_version = "10.15"
+accessibility_permissions = false
+
+[requirements.linux]
+min_kernel_version = "5.0"
+desktop_environment = ["gnome", "kde", "xfce"]  # Optional: specific DE requirements
+
+[settings]
+# Default configuration values that users can customize
+[settings.default]
+auto_connect = true
+connection_timeout = 5000  # milliseconds
+retry_attempts = 3
+api_endpoint = "http://localhost:8080"
+
+# Settings that can be configured by users
+[settings.configurable]
+connection_timeout = { type = "number", min = 1000, max = 30000, description = "Connection timeout in milliseconds" }
+api_endpoint = { type = "string", description = "API endpoint URL for the application" }
+auto_connect = { type = "boolean", description = "Automatically connect to the app on startup" }
+
+[actions]
+# Define available actions (should match what's in your Rust code)
+[[actions.available]]
+id = "launch"
+name = "Launch App"
+description = "Launch the application"
+icon = "play"  # Icon identifier for UI
+category = "control"
+
+[[actions.available]]
+id = "send_command"
+name = "Send Command"
+description = "Send a command to the application"
+icon = "command"
+category = "communication"
+
+[[actions.available]]
+id = "get_status"
+name = "Get Status"
+description = "Get the current status of the application"
+icon = "info"
+category = "information" 

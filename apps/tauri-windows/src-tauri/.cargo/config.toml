@@ -1,0 +1,10 @@
+[build]
+# MSBuild (.NET Framework) doesn't support long paths even with LongPathsEnabled registry.
+# aws-lc-sys CMake builds create deeply nested paths that exceed 260 chars in the default target dir.
+target-dir = "F:\\vd-target"
+
+
+
+[env]
+CMAKE_POLICY_VERSION_MINIMUM = "3.5"
+CMAKE = "C:\\Program Files\\CMake\\bin\\cmake.exe"

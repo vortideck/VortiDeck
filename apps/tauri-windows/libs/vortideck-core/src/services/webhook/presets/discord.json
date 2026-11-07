@@ -1,0 +1,23 @@
+{
+  "name": "Discord Webhooks",
+  "description": "Receive events from Discord channels and bots",
+  "events": [
+    {
+      "id": "message",
+      "name": "Message Received",
+      "description": "Triggered when a message is sent in a channel",
+      "example_payload": {
+        "content": "Hello world!",
+        "author": {
+          "username": "user123",
+          "id": "123456789"
+        },
+        "channel_id": "987654321",
+        "timestamp": "2024-01-01T12:00:00Z"
+      }
+    }
+  ],
+  "registration": null,
+  "signature_verification": null,
+  "documentation": "https://discord.com/developers/docs/resources/webhook"
+}
