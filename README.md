@@ -39,6 +39,10 @@ To build it yourself, see [Building from source](#building-from-source).
 
 ## What it does
 
+<p align="center">
+  <img src="docs/media/demo.gif" alt="Tapping Go Live on the deck runs a flow: OBS switches scene, waits, and the overlay shows an alert" width="720">
+</p>
+
 - **Control deck.** A customizable grid of buttons, controls and multi-action macros on your desktop or on your phone over local Wi-Fi.
 - **Visual flows.** A node editor that chains deck buttons, chat commands, OBS actions, HTTP requests, system actions and AI tools. Runs survive a crash and wait for your decision instead of silently repeating actions.
 - **OBS overlays.** An overlay editor with drafts, Undo/Redo, publish, rehearsal with sample events, built-in widgets (chat, goals, counters, timer, activity feed) and an OBS companion plugin managed from the app.
@@ -56,8 +60,8 @@ Everything above runs on your machine and is free. An account is only needed for
     <td width="50%"><img src="docs/media/flows.png" alt="Visual flow editor"><br><sub><b>Visual flows.</b> Chain triggers, OBS actions and more in a node editor.</sub></td>
   </tr>
   <tr>
-    <td width="50%"><img src="docs/media/overlay.png" alt="Overlay Editor"><br><sub><b>Overlay Editor.</b> Chat, goals, timers and alerts, published to OBS.</sub></td>
-    <td width="50%"><img src="docs/media/phone.png" alt="Phone companion app"><br><sub><b>Phone companion.</b> Your deck on your phone over local Wi-Fi.</sub></td>
+    <td width="50%"><img src="docs/media/overlay.png" alt="Overlay Editor"><br><sub><b>Overlay Editor.</b> Chat, goals, timers and alerts, published to OBS. Shown with the Stream Essentials widget pack, which is in development.</sub></td>
+    <td width="50%" align="center"><img src="docs/media/phone.png" alt="Phone deck layout in the built-in simulator" width="220"><br><sub><b>Phone companion.</b> Your deck on your phone over local Wi-Fi, shown in the built-in simulator.</sub></td>
   </tr>
 </table>
 
